@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc_mybatis.mapper.ConfigMapper">
+	<resultMap type="Config" id="configResult">
+		<result column="id" property="id" />
+		<result column="bankid" property="bankid" />
+		<result column="bank_name" property="bankname" />
+		<result column="sla_threshold" property="sla_threshold" />
+		<result column="available_ratio_threshold" property="available_ratio_threshold" />
+		<result column="max_beyond_time" property="max_beyond_time" />
+		<result column="rstatus" property="rstatus" />
+		<result column="mail_to" property="mail_to" />
+	</resultMap>
+	
+	
+
+	<select id="getAllConfigs" resultMap="configResult">
+		select * from config
+	</select>
+	
+</mapper>
