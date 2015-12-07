@@ -13,9 +13,12 @@
 	</resultMap>
 	
 	
-
 	<select id="getAllConfigs" resultMap="configResult">
 		select * from config
 	</select>
 	
+	<insert id="addConfig"  parameterType="Config">
+         insert into config(bankid,bank_name,sla_threshold,available_ratio_threshold,max_beyond_time,rstatus,mail_to) 
+         values(#{bankid},#{bankname},#{sla_threshold},#{available_ratio_threshold},#{max_beyond_time},#{rstatus},#{mail_to})
+    </insert>
 </mapper>

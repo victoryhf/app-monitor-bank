@@ -1,9 +1,9 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
  <head>
   <title>增加配置信息</title>
@@ -17,61 +17,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  -->
  </head>
  <body>
-  <form action="UserRegister" name="form" mothod="post"
-   onsubmit="return checkForm(this)">
+  <form action="config/addconfig.action" name="form" method="post">
    <table width="60%" border="1">
     <tr align="left">
      <td>
                    银行专线号：
-      <input type="text" name="bankid">
+      <input type="text" name="bankid" />
      </td>
     </tr>
     <tr align="left">
      <td>
                  专线名称：
-      <input type="text" name="bankname">
+      <input type="text" name="bankname"/>
      </td>
     </tr>
     <tr align="left">
      <td>
                  响应SLA阀值：
-      <input type="text" name="sla_threshold">
+      <input type="text" name="sla_threshold"/>
      </td>
     </tr>
     <tr align="left">
      <td>
                  专线可用率阀值：
-      <input type="text" name="available_ratio_threshold">
+      <input type="text" name="available_ratio_threshold"/>
      </td>
     </tr>
     <tr align="left">
      <td>
                最大超时时间:
-      <input type="text" name="max_beyond_time">
+      <input type="text" name="max_beyond_time"/>
      </td>
     </tr>
     <tr align="left">
      <td>
               是否读取状态:
-      <input type="text" name="rstatus">
+      <input type="text" name="rstatus"/>
      </td>
     </tr>
     <tr align="left">
      <td>
              告警信息订阅人：
-      <input type="text" name="mail_to">
+      <input type="text" name="mail_to"/>
      </td>
     </tr>
     
-    <tr align="center">
+    <tr >
      <td>
-      <input type="submit" value="注册" onclick="false">
+      <input type="submit" value="保存" />
+      <input type="reset" value="重置"/>
      </td>
     </tr>
    </table>
   </form>
   
-
  </body>
 </html>
  

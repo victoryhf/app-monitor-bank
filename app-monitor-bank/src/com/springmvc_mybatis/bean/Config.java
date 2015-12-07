@@ -1,6 +1,8 @@
 package com.springmvc_mybatis.bean;
 
 import java.io.Serializable;
+import java.util.Date;
+
 
 
 public class Config  implements Serializable{
@@ -15,8 +17,50 @@ public class Config  implements Serializable{
 	private String sla_threshold;
 	private String available_ratio_threshold;
 	private String max_beyond_time;
-	private int rstatus;
+	private Integer rstatus;
 	private String mail_to;
+	
+	public Config() {
+		super();
+	}
+
+	public Config(String bankid, 
+			      String bankname,
+			      String sla_threshold,
+			      String available_ratio_threshold,
+			      String max_beyond_time,
+			      Integer rstatus,
+			      String mail_to) {
+		super();
+		this.bankid = bankid;
+		this.bankname = bankname;
+		this.sla_threshold = sla_threshold;
+		this.available_ratio_threshold = available_ratio_threshold;
+		this.max_beyond_time = max_beyond_time;
+		this.rstatus = rstatus;
+		this.mail_to = mail_to;
+	}
+	
+	public Config(int id,
+			      String bankid, 
+		          String bankname,
+		          String sla_threshold,
+		          String available_ratio_threshold,
+		          String max_beyond_time,
+		          Integer rstatus,
+		          String mail_to) {
+	super();
+	this.id = id;
+	this.bankid = bankid;
+	this.bankname = bankname;
+	this.sla_threshold = sla_threshold;
+	this.available_ratio_threshold = available_ratio_threshold;
+	this.max_beyond_time = max_beyond_time;
+	this.rstatus = rstatus;
+	this.mail_to = mail_to;
+	
+	}
+
 	
 	
 	public String getMail_to() {
@@ -75,11 +119,11 @@ public class Config  implements Serializable{
 		this.max_beyond_time = max_beyond_time;
 	}
 
-	public int getRstatus() {
+	public Integer getRstatus() {
 		return rstatus;
 	}
 
-	public void setRstatus(int rstatus) {
+	public void setRstatus(Integer rstatus) {
 		this.rstatus = rstatus;
 	}
 	
