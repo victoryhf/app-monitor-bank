@@ -12,13 +12,29 @@
 		<result column="mail_to" property="mail_to" />
 	</resultMap>
 	
-	
+	<!--查询所有配置信息 -->
 	<select id="getAllConfigs" resultMap="configResult">
 		select * from config
 	</select>
 	
+	<!--查询单个配置信息根据id -->
+	<select id="getConfigByid" resultMap="configResult">
+		select * from config where id=#{id}
+	</select>
+	
+	<!--修改配置信息 -->
+    <update id="updateConfigByid" parameterType="Config">
+        update config set bankid=#{bankid},bank_name=#{bankname},
+         sla_threshold=#{sla_threshold},available_ratio_threshold=#{available_ratio_threshold},
+         max_beyond_time=#{max_beyond_time},rstatus=#{rstatus},mail_to=#{mail_to} where id=#{id}
+    </update>
+	
+	<!--新增配置信息 -->
 	<insert id="addConfig"  parameterType="Config">
          insert into config(bankid,bank_name,sla_threshold,available_ratio_threshold,max_beyond_time,rstatus,mail_to) 
          values(#{bankid},#{bankname},#{sla_threshold},#{available_ratio_threshold},#{max_beyond_time},#{rstatus},#{mail_to})
     </insert>
+    
+    
+    
 </mapper>

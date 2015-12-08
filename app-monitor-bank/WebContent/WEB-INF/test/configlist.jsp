@@ -42,11 +42,11 @@ pageContext.setAttribute("basePath", basePath);
 					<td>${config.max_beyond_time}</td>
 					<td>${config.rstatus}</td>
 					<td>${config.mail_to}</td>
-					<td><a onclick="return false"
-						href="${pageContext.request.contextPath}/config/modify.action?id=${config.bankid}"><font
+					<td><a 
+						href="${pageContext.request.contextPath}/config/queryConfigByid.action?id=${config.id}"><font
 							color="blue">修改</font></a></td>
 					<td><a onclick="return false"
-						href="${pageContext.request.contextPath}/config/delete/${config.bankid}.action"><font
+						href="${pageContext.request.contextPath}/config/delete/${config.id}.action"><font
 							color="blue">删除</font></a></td>
 				</tr>
 			</c:forEach>

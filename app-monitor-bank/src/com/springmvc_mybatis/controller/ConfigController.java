@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc_mybatis.bean.Config;
-import com.springmvc_mybatis.bean.User;
 import com.springmvc_mybatis.mapper.ConfigMapper;
 
 
@@ -29,13 +29,12 @@ public class ConfigController {
 	public String getAllConfigs(Model model) {
 		List<Config> configs = configrmapper.getAllConfigs();
 		model.addAttribute("configs", configs);
-		System.out.println(configs);
 		return "configlist";
 
 	}
 	
 	@RequestMapping("/addconfig")
-	public String addconfig(HttpServletRequest request, Model model) {
+	public String addConfig(HttpServletRequest request, Model model) {
 		String bankid = request.getParameter("bankid");
 		String bankname = request.getParameter("bankname");
 		String sla_threshold = request.getParameter("sla_threshold");
@@ -47,15 +46,51 @@ public class ConfigController {
 				max_beyond_time,rstatus,mail_to);
 		
 		if (config_add != 1) {
-			System.out.println("Error insert!");
-			return "fail";
+			//System.out.println("Error insert!");
+			return "addconfigfail";
 		} else {
-			model.addAttribute("config", config_add);
+			//model.addAttribute("config", config_add);
 			return "redirect:/config/configlist.action";
 		}
 		
 	}
 	
+	@RequestMapping("/queryConfigByid")
+	public String queryConfigByid(HttpServletRequest request, Model model) {
+		int id =  Integer.parseInt(request.getParameter("id"));		
+		Config config_one = configrmapper.getConfigByid(id);
+		model.addAttribute("config", config_one);	
+		return "modifyconfig";
+		
+	}
+	
+    @RequestMapping("/updateConfigByid")
+	public String updateConfigByid(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		String bankid = request.getParameter("bankid");
+		String bankname = request.getParameter("bankname");
+		String sla_threshold = request.getParameter("sla_threshold");
+		String available_ratio_threshold = request.getParameter("available_ratio_threshold");
+		String max_beyond_time = request.getParameter("max_beyond_time");
+		Integer rstatus = Integer.valueOf(request.getParameter("rstatus"));
+		String mail_to = request.getParameter("mail_to");
+		
+		int updatestatus = configrmapper.updateConfigByid(id, bankid, bankname,sla_threshold,available_ratio_threshold,
+				max_beyond_time,rstatus,mail_to);
+		
+		if (updatestatus == 1) {
+			return "redirect:/config/configlist.action";
+		}
+		return null;
+	}
+	
+	
+	  /* @RequestMapping("/updateConfigByid")  
+	    public ModelAndView updateConfigByid(Config config){      
+	        System.out.println("编辑: "+config);  
+	        this.configrmapper.updateConfigByid(config);  
+	      //  return configList();  
+	    }  */
 	
 }
 

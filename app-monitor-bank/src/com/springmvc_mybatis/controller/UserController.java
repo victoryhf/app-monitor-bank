@@ -23,7 +23,6 @@ public class UserController {
 	public String login(HttpServletRequest request, Model model) {
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println("login");
 		User user_login = usermapper.login(name, password);
 		System.out.println(user_login);
 		if (user_login == null) {

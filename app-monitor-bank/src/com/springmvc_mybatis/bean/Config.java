@@ -23,6 +23,12 @@ public class Config  implements Serializable{
 	public Config() {
 		super();
 	}
+	
+	public Config(int id
+		                    ) {
+        super();
+        this.id = id;
+    }
 
 	public Config(String bankid, 
 			      String bankname,
@@ -134,55 +140,7 @@ public class Config  implements Serializable{
 				+ ", max_beyond_time=" + max_beyond_time +", rstatus=" + rstatus+", mail_to=" + mail_to+"]";
 	}
 
-	/*public User() {
-		super();
-	}
-
-	public User(String name, String password) {
-		super();
-		this.name = name;
-		this.password = password;
-	}
-
-	public User(Integer id, String name, String password, Date time) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.time = time;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
-	}*/
+	
 
 
 
