@@ -45,8 +45,8 @@ pageContext.setAttribute("basePath", basePath);
 					<td><a 
 						href="${pageContext.request.contextPath}/config/queryConfigByid.action?id=${config.id}"><font
 							color="blue">修改</font></a></td>
-					<td><a onclick="return false"
-						href="${pageContext.request.contextPath}/config/delete/${config.id}.action"><font
+					<td><a
+						href="${pageContext.request.contextPath}/config/deleteConfigByid.action?id=${config.id}"><font
 							color="blue">删除</font></a></td>
 				</tr>
 			</c:forEach>

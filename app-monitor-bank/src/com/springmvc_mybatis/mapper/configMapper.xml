@@ -35,6 +35,10 @@
          values(#{bankid},#{bankname},#{sla_threshold},#{available_ratio_threshold},#{max_beyond_time},#{rstatus},#{mail_to})
     </insert>
     
+    <!--删除一条配置-->
+    <delete id="deleteConfig" parameterType="config">
+        delete from config where id=#{id}
+    </delete>
     
     
 </mapper>

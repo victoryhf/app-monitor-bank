@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.springmvc_mybatis.bean.Config;
 import com.springmvc_mybatis.mapper.ConfigMapper;
@@ -25,6 +25,7 @@ public class ConfigController {
 	@Autowired
 	private ConfigMapper configrmapper;
 	
+	//查询所有配置信息
 	@RequestMapping("/configlist")
 	public String getAllConfigs(Model model) {
 		List<Config> configs = configrmapper.getAllConfigs();
@@ -33,6 +34,7 @@ public class ConfigController {
 
 	}
 	
+	//新增配置信息
 	@RequestMapping("/addconfig")
 	public String addConfig(HttpServletRequest request, Model model) {
 		String bankid = request.getParameter("bankid");
@@ -55,6 +57,7 @@ public class ConfigController {
 		
 	}
 	
+	//通过id查询一条配置信息
 	@RequestMapping("/queryConfigByid")
 	public String queryConfigByid(HttpServletRequest request, Model model) {
 		int id =  Integer.parseInt(request.getParameter("id"));		
@@ -64,7 +67,23 @@ public class ConfigController {
 		
 	}
 	
+    //更新配置信息
     @RequestMapping("/updateConfigByid")
+	public String updateConfigByid(Config config) {
+		configrmapper.updateConfigByid(config);
+		return "redirect:/config/configlist.action";
+	}
+    
+    //删除一条配置信息
+    @RequestMapping("/deleteConfigByid")
+	public String delConfig(Config config) {
+		configrmapper.deleteConfig(config);
+		//System.out.println(config);
+		return "redirect:/config/configlist.action";
+	}
+    
+	
+  /*  @RequestMapping("/updateConfigByid")
 	public String updateConfigByid(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
 		String bankid = request.getParameter("bankid");
@@ -82,15 +101,8 @@ public class ConfigController {
 			return "redirect:/config/configlist.action";
 		}
 		return null;
-	}
+	}*/
 	
-	
-	  /* @RequestMapping("/updateConfigByid")  
-	    public ModelAndView updateConfigByid(Config config){      
-	        System.out.println("编辑: "+config);  
-	        this.configrmapper.updateConfigByid(config);  
-	      //  return configList();  
-	    }  */
-	
+	 
 }
 

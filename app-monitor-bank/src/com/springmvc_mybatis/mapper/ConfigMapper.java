@@ -28,14 +28,18 @@ public interface ConfigMapper {
 	 Config getConfigByid(@Param(value = "id") int id);
 	 
 	 
-	 int updateConfigByid(@Param(value = "id") String id,
+	 int updateConfigByid(Config config);
+	 
+	 int deleteConfig(Config config);
+	 
+/*	 int updateConfigByid(@Param(value = "id") String id,
 			    @Param(value = "bankid") String bankid,
 				@Param(value = "bankname") String bankname,
 				@Param(value = "sla_threshold") String sla_threshold,
 				@Param(value = "available_ratio_threshold") String available_ratio_threshold,
 				@Param(value = "max_beyond_time") String max_beyond_time,
 				@Param(value = "rstatus") Integer rstatus,
-				@Param(value = "mail_to") String mail_to);
+				@Param(value = "mail_to") String mail_to);*/
 	 
 	
 	 
