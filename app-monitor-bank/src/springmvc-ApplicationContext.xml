@@ -45,4 +45,7 @@
 
 	<!-- 5. 使用声明式事务 -->
 	<tx:annotation-driven transaction-manager="manager" />
+	
+	<!-- 6. 应用启动时调用init方法，获得config表配置 -->
+	<bean id="cfg" class="com.springmvc_mybatis.bean.AutoLoadCfg" init-method="init"></bean>
 </beans>
