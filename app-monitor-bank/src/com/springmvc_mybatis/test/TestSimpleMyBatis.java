@@ -12,7 +12,7 @@ import com.springmvc_mybatis.bean.User;
 import com.springmvc_mybatis.mapper.UserMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/springmvc.xml")
+@ContextConfiguration("/springmvc-ApplicationContext.xml")
 public class TestSimpleMyBatis {
 
 	@Autowired

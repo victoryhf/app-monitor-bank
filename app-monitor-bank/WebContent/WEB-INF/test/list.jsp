@@ -1,3 +1,6 @@
+<%@page import="com.springmvc_mybatis.bean.AutoLoadCfg"%>
+<%@page import="org.springframework.web.servlet.support.RequestContextUtils"%>
+<%@page import="org.springframework.web.context.WebApplicationContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,10 +9,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+pageContext.setAttribute("basePath", basePath);
+WebApplicationContext wac = (WebApplicationContext) RequestContextUtils
+.getWebApplicationContext(pageContext.getRequest(),
+		pageContext.getServletContext());
+AutoLoadCfg acfg = (AutoLoadCfg) wac.getBean("cfg");
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<%=acfg.getValue("00010001") %>
 	<c:if test="${empty requestScope.users }">
 		<font color="red">没有员工信息！</font>
 	</c:if>
