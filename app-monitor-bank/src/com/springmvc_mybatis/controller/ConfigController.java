@@ -82,6 +82,7 @@ public class ConfigController {
 		return "redirect:/config/configlist.action";
 	}
     
+
 	
   /*  @RequestMapping("/updateConfigByid")
 	public String updateConfigByid(HttpServletRequest request, Model model) {

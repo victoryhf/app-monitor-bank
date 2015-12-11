@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springmvc_mybatis.mapper.BankslaMapper">
+	<resultMap type="banksla" id="banksla">
+		<result column="id" property="id" />
+		<result column="bankid" property="bankid" />
+		<result column="time" property="time" />
+		<result column="nomal_resp" property="nomal_resp" />
+		<result column="total_req" property="total_req" />
+		<result column="average_sla" property="average_sla" />
+		<result column="available_ratio" property="available_ratio" />
+	</resultMap>
+	
+	<!--查询所有数据 -->
+	<select id="getAllbanksla" resultMap="banksla">
+		select * from banksla
+	</select>
+	
+</mapper>

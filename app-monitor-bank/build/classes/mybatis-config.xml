@@ -10,6 +10,7 @@
 	<typeAliases>
 	<typeAlias type="com.springmvc_mybatis.bean.User" alias="User" />
 	<typeAlias type="com.springmvc_mybatis.bean.Config" alias="Config" />
+	<typeAlias type="com.springmvc_mybatis.bean.Banksla" alias="Banksla" />
     </typeAliases>
     
 	<!-- 设置数据库连接环境 -->
@@ -17,5 +18,6 @@
 	<mappers>
 		<mapper resource="com/springmvc_mybatis/mapper/userMapper.xml" />
 		<mapper resource="com/springmvc_mybatis/mapper/configMapper.xml" />
+		<mapper resource="com/springmvc_mybatis/mapper/bankslaMapper.xml" />
 	</mappers>
 </configuration>
