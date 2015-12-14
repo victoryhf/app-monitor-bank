@@ -55,11 +55,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         data : {},
                                         dataType : "json", //返回数据形式为json
                                         success : function(result) {
-                                        	
+                                    
                                         if (result) {
                                                for(var i=0;i<result.length;i++){
-                                                  console.log(result[i].name);
-                                                  arr.push(result[i].name);
+                                                  console.log(result[i].time);
+                                                  arr.push(result[i].time);
                                                 }    
                                         }
                                         
@@ -78,6 +78,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             type : 'value'
                         }
                     ],
+                	
+                    	
+                    	
+                
                     series : [
                         {
                             "name":"销量",
@@ -93,8 +97,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         success : function(result) {
                                         if (result) {
                                                for(var i=0;i<result.length;i++){
-                                                  console.log(result[i].num);
-                                                  arr.push(result[i].num);
+                                                  console.log(result[i].available_ratio);
+                                                  arr.push(result[i].available_ratio);
                                                 }  
                                         }
                                     },

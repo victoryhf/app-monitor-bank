@@ -10,11 +10,13 @@
 		<result column="total_req" property="total_req" />
 		<result column="average_sla" property="average_sla" />
 		<result column="available_ratio" property="available_ratio" />
+		<result column="bank_name" property="bank_name" />
+		<result column="available_ratio_threshold" property="available_ratio_threshold" />
 	</resultMap>
 	
 	<!--查询所有数据 -->
 	<select id="getAllbanksla" resultMap="banksla">
-		select time,available_ratio from banksla
+		select b.bank_name,b.available_ratio_threshold,a.time,a.available_ratio from banksla a,config b where a.bankid = b.bankid
 	</select>
 	
 </mapper>

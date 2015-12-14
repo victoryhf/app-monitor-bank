@@ -15,6 +15,26 @@ public class Banksla implements Serializable{
 	private String average_sla;
 	private String available_ratio;
 	
+	private String bank_name;
+	private String available_ratio_threshold;
+	
+	
+	public String getBank_name() {
+		return bank_name;
+	}
+
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+
+	public String getAvailable_ratio_threshold() {
+		return available_ratio_threshold;
+	}
+
+	public void setAvailable_ratio_threshold(String available_ratio_threshold) {
+		this.available_ratio_threshold = available_ratio_threshold;
+	}
+
 	public Banksla() {
 		super();
 	}
