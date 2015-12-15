@@ -59,10 +59,6 @@ public class BankslaController {
 			e.printStackTrace();
 		}
 		
-        
-		
-        
-		
 	    
 		return "ratio";
 		

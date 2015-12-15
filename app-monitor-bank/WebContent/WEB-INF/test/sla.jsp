@@ -35,10 +35,10 @@
 		], function drewEcharts(ec) {
 			
 			//ajax查询后台数据存放在各个变量中
-			var ratioTitle="专线可用率曲线图";
+			var slaTitle="sla曲线图";
 			var xTimeArr = [];
-			var yAvailableRatioArr =[];
-			var marklineAvailableRatioThreshold = null;
+			var yAverageSla =[];
+			var marklineSlaThreshold = null;
 			$.ajax({
 					type : "post",
 					async : false, //同步执行
@@ -48,13 +48,13 @@
 					success : function(result) {
 								if (result) {
 									console.log(result[0].bank_name);
-									ratioTitle = result[0].bank_name + ratioTitle;
+									slaTitle = result[0].bank_name + slaTitle;
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
 										    xTimeArr.push(result[i].time);
-										    yAvailableRatioArr.push(result[i].available_ratio);
+										    yAverageSla.push(result[i].average_sla);
 									     }
-									marklineAvailableRatioThreshold = result[0].available_ratio_threshold;
+									marklineSlaThreshold = result[0].sla_threshold;
 
 								}
 
@@ -70,12 +70,16 @@
 			var option = {
 					
 			    title : {
-					text: ratioTitle,
+					text: slaTitle,
 			    },
 			    
 				tooltip : {
 					trigger: 'axis'
 				},
+				
+			    legend: {
+				        data:[slaTitle]
+			    },
 				
 				calculable : true,
 
@@ -95,14 +99,14 @@
 
 				
 				series : [ {
-					name : ratioTitle,
+					name : slaTitle,
 					type : 'line',
-					data : yAvailableRatioArr,
+					data : yAverageSla,
 					
 					markLine : {
 	                    
 	                    data : [
-	                         [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: 96}]
+	                         [{name: 'SLA阀值',value: marklineSlaThreshold, xAxis: -1, yAxis: marklineSlaThreshold},{xAxis:16,yAxis: 96}]
 	                           ]
 			           }
 					

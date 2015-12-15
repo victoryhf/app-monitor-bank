@@ -31,14 +31,15 @@
 		});
 
 		// 使用
-		require([ 'echarts', 'echarts/chart/line' // 使用折线图就加载line模块，按需加载
+		require([ 'echarts', 'echarts/chart/bar' // 使用折线图就加载line模块，按需加载
 		], function drewEcharts(ec) {
 			
 			//ajax查询后台数据存放在各个变量中
-			var ratioTitle="专线可用率曲线图";
+			var rrTitle="请求响应数统计";
 			var xTimeArr = [];
-			var yAvailableRatioArr =[];
-			var marklineAvailableRatioThreshold = null;
+			var nomalRespArr = [];
+			var totalReqArr= [];
+			
 			$.ajax({
 					type : "post",
 					async : false, //同步执行
@@ -48,13 +49,14 @@
 					success : function(result) {
 								if (result) {
 									console.log(result[0].bank_name);
-									ratioTitle = result[0].bank_name + ratioTitle;
+									rrTitle = result[0].bank_name + rrTitle;
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
 										    xTimeArr.push(result[i].time);
-										    yAvailableRatioArr.push(result[i].available_ratio);
+										    nomalRespArr.push(result[i].nomal_resp);
+										    totalReqArr.push(result[i].total_req);
 									     }
-									marklineAvailableRatioThreshold = result[0].available_ratio_threshold;
+									
 
 								}
 
@@ -70,11 +72,18 @@
 			var option = {
 					
 			    title : {
-					text: ratioTitle,
+					text: rrTitle,
 			    },
 			    
 				tooltip : {
 					trigger: 'axis'
+				},
+				
+				legend: {
+				    data:[
+				            '正常响应笔数',
+				            '总请求笔数'
+				         ]
 				},
 				
 				calculable : true,
@@ -83,33 +92,44 @@
 					type : 'category',
 					boundaryGap : false,
 					data : xTimeArr
-				} ],
+				},
+				{
+		            type : 'category',
+		            axisLine: {show:false},
+		            axisTick: {show:false},
+		            axisLabel: {show:false},
+		            splitArea: {show:false},
+		            splitLine: {show:false},
+		            data : xTimeArr
+		        }
+				
+				],
 				
 				yAxis : [ {
 
 					type : 'value',
 					axisLabel : {
-						formatter : '{value} %'
+						formatter : '{value} '
 					}
 				} ],
 
 				
-				series : [ {
-					name : ratioTitle,
-					type : 'line',
-					data : yAvailableRatioArr,
-					
-					markLine : {
-	                    
-	                    data : [
-	                         [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: 96}]
-	                           ]
-			           }
-					
+			    series : [
+			              {
+			                  name:'正常响应笔数',
+			                  type:'bar',
+			                  itemStyle: {normal: {color:'rgba(181,195,52,1)', label:{show:true,textStyle:{color:'#27727B'}}}},
+			                  data:nomalRespArr
+			              },
 
-				}, 
-				
-				]
+			              {
+			                  name:'总请求笔数',
+			                  type:'bar',
+			                  xAxisIndex:1,
+			                  itemStyle: {normal: {color:'rgba(181,195,52,0.5)', label:{show:true}}},
+			                  data:totalReqArr
+			              }
+			          ]
 				
 			};
 
