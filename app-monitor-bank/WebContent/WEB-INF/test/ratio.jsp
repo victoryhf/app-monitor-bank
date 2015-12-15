@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body >
 
  
-    <div id="main" style="height:400px"></div>
+    <div id="main" style="height:350px" ></div>
 
     <script type="text/javascript">
         // 路径配置
@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         require(
             [
                 'echarts',
-                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
             ],
             function drewEcharts(ec) {
                 // 基于准备好的dom，初始化echarts图表
@@ -41,11 +41,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         show: true
                     },
                     legend: {
-                        data:['销量']
+                    	type : 'data',
+                        data : (function(){
+                            var arr=[];
+                                $.ajax({
+                                type : "post",
+                                async : false, //同步执行
+                                url : "banksla/ratiolist.action",
+                                data : {},
+                                dataType : "json", //返回数据形式为json
+                                success : function(result) {
+                            
+                                if (result) {
+                                       
+                                          console.log(result[0].bank_name);
+                                          arr.push(result[0].bank_name);
+                                         
+                                }
+                                
+                            },
+                            error : function(errorMsg) {
+                                alert("不好意思，大爷，图表请求数据失败啦!");
+                                myChart.hideLoading();
+                            }
+                           })
+                           return arr;
+                        })() 
+                       
+                              
+                              
                     },
+                    
                     xAxis : [
                         {
                             type : 'category',
+                            boundaryGap:false,
                             data : (function(){
                                     var arr=[];
                                         $.ajax({
@@ -75,7 +105,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     ],
                     yAxis : [
                         {
-                            type : 'value'
+                        	
+                            type : 'value',
+                            axisLabel : {
+                                formatter: '{value} %'
+                            }
                         }
                     ],
                 	
@@ -85,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     series : [
                         {
                             "name":"销量",
-                            "type":"bar",
+                            "type":"line",
                             "data":(function(){
                                         var arr=[];
                                         $.ajax({
@@ -108,11 +142,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     }
                                    })
                                   return arr;
-                            })()
+                            })(),
+                           
+                            	
+                            	
+                            	
+                            	
+                            	
+                            
+                        	    
+                            	
+                        
                             
                         }
                     ]
-                };               
+                };   
+                
                 // 为echarts对象加载数据 
                 myChart.setOption(option);        
             }
