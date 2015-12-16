@@ -15,12 +15,16 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<style type="text/css">
 
+.div{width:500px;height:230px;
+}
+</style>
 </head>
 <body>
 
 
-	<div id="main" style="height: 350px"></div>
+	<div id="main" class="div"></div>
 
 	<script type="text/javascript">
 		// 路径配置
@@ -71,10 +75,18 @@
 					
 			    title : {
 					text: slaTitle,
+					x:'center',
+					y:'top',
+					textStyle :{
+						fontSize: 16,
+					    fontWeight: 'bolder',
+					    align: 'center',
+					}
 			    },
 			    
 				tooltip : {
-					trigger: 'axis'
+					trigger: 'axis',
+					
 				},
 				
 			    legend: {
