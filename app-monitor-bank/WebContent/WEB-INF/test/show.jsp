@@ -13,8 +13,8 @@
 </head>
 <body>
 
-<iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" src="http://localhost:8080/app-monitor-bank/ratio.jsp"></iframe>
-<iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" src="http://localhost:8080/app-monitor-bank/sla.jsp"></iframe>
-<iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" src="http://localhost:8080/app-monitor-bank/rrbar.jsp"></iframe>
+<iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" marginheight="0" marginwidth="0" src="http://localhost:8080/app-monitor-bank/ratio.jsp"></iframe>
+<iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" marginheight="0" marginwidth="0" src="http://localhost:8080/app-monitor-bank/sla.jsp"></iframe>
+<iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" marginheight="0" marginwidth="0" src="http://localhost:8080/app-monitor-bank/rrbar.jsp"></iframe>
 </body>
 </html>

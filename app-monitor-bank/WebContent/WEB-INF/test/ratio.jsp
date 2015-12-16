@@ -17,7 +17,7 @@
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 <style type="text/css">
 
-.div{width:500px;height:230px;
+.div{width:438px;height:208px;border:0px;
 }
 </style>
 </head>
@@ -78,10 +78,12 @@
 					text: ratioTitle,
 					x:'center',
 					y:'top',
+					padding:8,
 					textStyle :{
-						fontSize: 16,
+						fontSize: 14,
 					    fontWeight: 'bolder',
 					    align: 'center',
+					    
 					}
 					
 			    },
@@ -89,13 +91,21 @@
 					trigger: 'axis',
 				
 				},
+				grid:{
+					x:45,
+					y:35,
+					height:'71%', 
+					width:'82%'
+					
+				},
 				
 				calculable : true,
 
 				xAxis : [ {
 					type : 'category',
 					boundaryGap : false,
-					data : xTimeArr
+					data : xTimeArr,
+					
 				} ],
 				
 				yAxis : [ {

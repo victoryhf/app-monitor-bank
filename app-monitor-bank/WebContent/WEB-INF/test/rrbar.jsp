@@ -17,7 +17,7 @@
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 <style type="text/css">
 
-.div{width:500px;height:230px;
+.div{width:438px;height:208px;border:0px;
 }
 </style>
 </head>
@@ -79,24 +79,25 @@
 					text: rrTitle,
 					x:'center',
 					y:'top',
+					padding:8,
 					textStyle :{
-						fontSize: 16,
+						fontSize: 14,
 					    fontWeight: 'bolder',
 					    align: 'center',
+					    
 					}
 			    },
 			    
 				tooltip : {
 					trigger: 'axis'
 				},
-				
-				legend: {
-				    data:[
-				            '正常响应笔数',
-				            '总请求笔数'
-				         ]
-				},
-				
+				grid:{
+					x:35,
+					y:35,
+					height:'71%', 
+					width:'84%'
+					
+				},		
 				calculable : true,
 
 				xAxis : [ {
