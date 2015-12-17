@@ -88,7 +88,7 @@
 			    
 				tooltip : {
 					trigger: 'axis',
-					
+					show:false
 				},
 				grid:{
 					x:58,

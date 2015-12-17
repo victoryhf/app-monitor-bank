@@ -118,7 +118,8 @@
 			    
 			    
 				tooltip : {
-					trigger: 'axis'
+					trigger: 'axis',
+					show:false
 				},
 				
 				calculable : true,
