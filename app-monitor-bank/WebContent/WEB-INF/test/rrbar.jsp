@@ -88,21 +88,52 @@
 					}
 			    },
 			    
+			    legend: {
+			        orient: 'vertical',      // 布局方式，默认为水平布局，可选为：
+			                                   // 'horizontal' ¦ 'vertical'
+			        x: 'right',               // 水平安放位置，默认为全图居中，可选为：
+			                                   // 'center' ¦ 'left' ¦ 'right'
+			                                   // ¦ {number}（x坐标，单位px）
+			        y: 'top',                  // 垂直安放位置，默认为全图顶端，可选为：
+			                                   // 'top' ¦ 'bottom' ¦ 'center'
+			                                   // ¦ {number}（y坐标，单位px）
+			        backgroundColor: 'rgba(0,0,0,0)',
+			        borderColor: '#ccc',       // 图例边框颜色
+			        borderWidth: 0,            // 图例边框线宽，单位px，默认为0（无边框）
+			        padding: 5,                // 图例内边距，单位px，默认各方向内边距为5，
+			                                   // 接受数组分别设定上右下左边距，同css
+			        itemGap: 5,               // 各个item之间的间隔，单位px，默认为10，
+			                                   // 横向布局时为水平间隔，纵向布局时为纵向间隔
+			        itemWidth: 15,             // 图例图形宽度
+			        itemHeight: 10.5,            // 图例图形高度
+			        textStyle: {
+			        	fontSize: 5,
+			            color: '#333'          // 图例文字颜色
+			        },
+			        data:[
+			            '正常响应',
+			            '总请求'
+			        ]
+			    },
+			    
+			    
 				tooltip : {
 					trigger: 'axis'
 				},
+				
+				calculable : true,
+				
 				grid:{
 					x:35,
 					y:35,
 					height:'71%', 
 					width:'84%'
 					
-				},		
-				calculable : true,
-
+				},
+				
+				
 				xAxis : [ {
 					type : 'category',
-					boundaryGap : false,
 					data : xTimeArr
 				},
 				{
@@ -128,14 +159,14 @@
 				
 			    series : [
 			              {
-			                  name:'正常响应笔数',
+			                  name:'正常响应',
 			                  type:'bar',
 			                  itemStyle: {normal: {color:'rgba(181,195,52,1)', label:{show:true,textStyle:{color:'#27727B'}}}},
 			                  data:nomalRespArr
 			              },
 
 			              {
-			                  name:'总请求笔数',
+			                  name:'总请求',
 			                  type:'bar',
 			                  xAxisIndex:1,
 			                  itemStyle: {normal: {color:'rgba(181,195,52,0.5)', label:{show:true}}},

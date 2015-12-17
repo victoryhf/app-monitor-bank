@@ -104,14 +104,15 @@
 				xAxis : [ {
 					type : 'category',
 					boundaryGap : false,
-					data : xTimeArr
+					data : xTimeArr,
 				} ],
 				
 				yAxis : [ {
 
 					type : 'value',
+					splitNumber:5,
 					axisLabel : {
-						formatter : '{value} %'
+						formatter : '{value} ms'
 					}
 				} ],
 
@@ -119,12 +120,20 @@
 				series : [ {
 					name : slaTitle,
 					type : 'line',
+				   //折线颜色
+				   // itemStyle:{
+				   // 	normal:{
+				   // 		lineStyle:{
+				   // 			color:'#6eaaee',
+				   // 		}
+				   // 	}
+				   // },
 					data : yAverageSla,
 					
 					markLine : {
 	                    
 	                    data : [
-	                         [{name: 'SLA阀值',value: marklineSlaThreshold, xAxis: -1, yAxis: marklineSlaThreshold},{xAxis:16,yAxis: 96}]
+	                         [{name: 'SLA阀值',value: marklineSlaThreshold, xAxis: -1, yAxis: marklineSlaThreshold},{xAxis:16,yAxis: marklineSlaThreshold}]
 	                           ]
 			           }
 					

@@ -126,7 +126,7 @@
 					markLine : {
 	                    
 	                    data : [
-	                         [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: 96}]
+	                         [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: marklineAvailableRatioThreshold}]
 	                           ]
 			           }
 					
