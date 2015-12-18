@@ -20,4 +20,9 @@
 		select b.bank_name,b.available_ratio_threshold,b.sla_threshold,a.time,a.available_ratio,a.average_sla,a.nomal_resp,a.total_req from banksla a,config b where a.bankid = b.bankid
 	</select>
 	
+	<!--根据bankid查询数据 -->
+	<select id="getbankslaBybid" resultMap="banksla">
+		select b.bank_name,b.available_ratio_threshold,b.sla_threshold,a.time,a.available_ratio,a.average_sla,a.nomal_resp,a.total_req from banksla a,config b where a.bankid = b.bankid and b.bankid=#{bankid}
+	</select>
+	
 </mapper>

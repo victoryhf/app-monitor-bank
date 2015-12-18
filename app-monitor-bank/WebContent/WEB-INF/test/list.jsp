@@ -17,6 +17,7 @@ WebApplicationContext wac = (WebApplicationContext) RequestContextUtils
 .getWebApplicationContext(pageContext.getRequest(),
 		pageContext.getServletContext());
 AutoLoadCfg acfg = (AutoLoadCfg) wac.getBean("cfg");
+
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>

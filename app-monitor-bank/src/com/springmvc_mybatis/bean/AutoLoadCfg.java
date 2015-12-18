@@ -3,6 +3,7 @@ package com.springmvc_mybatis.bean;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ public class AutoLoadCfg {
 	//private Config config;
 	//配置内容 随便什么对象都可以
 	private Map<String,Object> map = new HashMap<String,Object>();
+
 	
 	//初始化
 	public void init(){
@@ -34,8 +36,24 @@ public class AutoLoadCfg {
 		
 	}
 	
+	
+
+	
 	public Object getValue(String key){
 		return map.get(key);
 	}
+	
+	/*public Object getKey()
+	{
+		 Set<Map.Entry<String,Object>> sets=map.entrySet();
+		  for(Map.Entry<String,Object> entry:sets){
+		   System.out.println("key:"+entry.getKey());
+		  }
+		  return sets;
+	}
+	//+" value:"+entry.getValue()
+*/	
 
+	
+	
 }

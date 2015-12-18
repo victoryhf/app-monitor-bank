@@ -39,26 +39,26 @@
 		], function drewEcharts(ec) {
 			
 			//ajax查询后台数据存放在各个变量中
-			var slaTitle="sla曲线图";
+			var ratioTitle="专线可用率曲线图";
 			var xTimeArr = [];
-			var yAverageSla =[];
-			var marklineSlaThreshold = null;
+			var yAvailableRatioArr =[];
+			var marklineAvailableRatioThreshold = null;
 			$.ajax({
 					type : "post",
 					async : false, //同步执行
-					url : "banksla/ratiolist.action",
-					data : {},
+					url : "banksla/queryRatioListBybid.action",
+					data : {bankid:"00010001"},
 					dataType : "json", //返回数据形式为json
 					success : function(result) {
 								if (result) {
 									console.log(result[0].bank_name);
-									slaTitle = result[0].bank_name + slaTitle;
+									ratioTitle = result[0].bank_name + ratioTitle;
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
 										    xTimeArr.push(result[i].time);
-										    yAverageSla.push(result[i].average_sla);
+										    yAvailableRatioArr.push(result[i].available_ratio);
 									     }
-									marklineSlaThreshold = result[0].sla_threshold;
+									marklineAvailableRatioThreshold = result[0].available_ratio_threshold;
 
 								}
 
@@ -72,9 +72,9 @@
 			// 基于准备好的dom，初始化echarts图表
 			myChart = ec.init(document.getElementById('main'));
 			var option = {
-					
+
 			    title : {
-					text: slaTitle,
+					text: ratioTitle,
 					x:'center',
 					y:'top',
 					padding:8,
@@ -84,20 +84,19 @@
 					    align: 'center',
 					    
 					}
+					
 			    },
-			    
 				tooltip : {
 					trigger: 'axis',
-					//show:false
-				},
-				grid:{
-					x:58,
-					y:35,
-					height:'70%', 
-					width:'79%'
 					
 				},
-			    
+				grid:{
+					x:45,
+					y:35,
+					height:'71%', 
+					width:'82%'
+					
+				},
 				
 				calculable : true,
 
@@ -105,35 +104,28 @@
 					type : 'category',
 					boundaryGap : false,
 					data : xTimeArr,
+					
 				} ],
 				
 				yAxis : [ {
 
 					type : 'value',
-					splitNumber:5,
 					axisLabel : {
-						formatter : '{value} ms'
-					}
+						formatter : '{value} %'
+					},
+				
 				} ],
 
 				
 				series : [ {
-					name : slaTitle,
+					name : ratioTitle,
 					type : 'line',
-				   //折线颜色
-				   // itemStyle:{
-				   // 	normal:{
-				   // 		lineStyle:{
-				   // 			color:'#6eaaee',
-				   // 		}
-				   // 	}
-				   // },
-					data : yAverageSla,
+					data : yAvailableRatioArr,
 					
 					markLine : {
 	                    
 	                    data : [
-	                         [{name: 'SLA阀值',value: marklineSlaThreshold, xAxis: -1, yAxis: marklineSlaThreshold},{xAxis:16,yAxis: marklineSlaThreshold}]
+	                         [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: marklineAvailableRatioThreshold}]
 	                           ]
 			           }
 					

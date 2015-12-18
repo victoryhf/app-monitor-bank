@@ -8,6 +8,7 @@ import java.util.List;
 
 
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
 import com.springmvc_mybatis.bean.Banksla;
+import com.springmvc_mybatis.bean.Config;
 import com.springmvc_mybatis.mapper.BankslaMapper;
 
 
@@ -41,6 +44,33 @@ public class BankslaController {
 	public String selebanksla(HttpServletRequest request,HttpServletResponse response, Model model){
 		
 		List<Banksla> array = bankslamapper.getAllbanksla();
+		response.setContentType("text/html; charset=utf-8");
+		JSONArray json=JSONArray.fromObject(array);
+		System.out.println(json.toString());
+		
+		
+		PrintWriter out;
+		try {
+			
+			out = response.getWriter();
+	        out.println(json);  
+	        out.flush();  
+	        out.close();  
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	    
+		return "ratio";
+		
+	}
+	
+	@RequestMapping("/queryRatioListBybid")
+	public String queryRatioList(HttpServletRequest request,HttpServletResponse response, Model model,Banksla banksla) {
+		List<Banksla> array = bankslamapper.getbankslaBybid(banksla);
+		//System.out.println(banksla.getBankid()+"aaaaaaa");
 		response.setContentType("text/html; charset=utf-8");
 		JSONArray json=JSONArray.fromObject(array);
 		System.out.println(json.toString());

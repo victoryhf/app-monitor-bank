@@ -49,7 +49,6 @@
 					url : "banksla/ratiolist.action",
 					data : {},
 					dataType : "json", //返回数据形式为json
-				
 					success : function(result) {
 								if (result) {
 									console.log(result[0].bank_name);
@@ -89,7 +88,7 @@
 			    },
 				tooltip : {
 					trigger: 'axis',
-					show:false
+					
 				},
 				grid:{
 					x:45,

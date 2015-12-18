@@ -12,6 +12,8 @@ public interface BankslaMapper {
 	 */
 	
 	List<Banksla> getAllbanksla();
+	
+	List<Banksla> getbankslaBybid(Banksla banksla);
  
 
 }
