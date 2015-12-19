@@ -12,8 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 <style type="text/css">
 
@@ -67,7 +66,7 @@
 								alert("数据加载出错");
 								myChart.hideLoading();
 							}
-						})
+						});
 					
 			// 基于准备好的dom，初始化echarts图表
 			myChart = ec.init(document.getElementById('main'));
@@ -134,10 +133,11 @@
 				
 				]
 				
+			
 			};
-
-			// 为echarts对象加载数据 
 			myChart.setOption(option);
+		    
+		
 		}
 
 		);
