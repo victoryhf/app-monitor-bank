@@ -43,6 +43,7 @@
 		          drawEcharts
 		    );
 		
+		var bankid = "00010001";
 		 
 	    function drawEcharts(ec){
 	    	  drawLine1(ec);
@@ -60,7 +61,7 @@
 					type : "post",
 					async : false, //同步执行
 					url : "banksla/queryRatioListBybid.action",
-					data : {bankid:"00010001"},
+					data : {bankid:bankid},
 					dataType : "json", //返回数据形式为json
 					success : function(result) {
 								if (result) {
