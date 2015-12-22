@@ -110,8 +110,9 @@
 
 					type : 'value',
 					axisLabel : {
-						formatter : '{value} '
+						formatter : '{value}%'
 					}
+					
 				
 				} ],
 
