@@ -11,6 +11,11 @@
 
 </style>
 </head>
+<%   
+  //页面每隔60秒自动刷新一遍        
+   response.setHeader("refresh" , "60" );   
+%>   
+
 <body>
 
 <iframe name="banksla" width="440" height="210" frameborder="0" scrolling="no" class="do" marginheight="0" marginwidth="0" src="http://localhost:8080/app-monitor-bank/ratio.jsp"></iframe>

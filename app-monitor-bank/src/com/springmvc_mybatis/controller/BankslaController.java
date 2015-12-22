@@ -48,7 +48,6 @@ public class BankslaController {
 		JSONArray json=JSONArray.fromObject(array);
 		System.out.println(json.toString());
 		
-		
 		PrintWriter out;
 		try {
 			
