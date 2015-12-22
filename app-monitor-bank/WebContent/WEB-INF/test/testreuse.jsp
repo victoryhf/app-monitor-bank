@@ -125,6 +125,7 @@
 						axisLabel : {
 							formatter : '{value} %'
 						},
+						splitNumber:10
 					
 					} ],
 
