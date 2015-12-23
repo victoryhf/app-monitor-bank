@@ -97,18 +97,33 @@
 					
 				},
 				
+				
 				calculable : true,
 
 				xAxis : [ {
 					type : 'category',
 					boundaryGap : false,
 					data : xTimeArr,
+				  /*   axisLabel:{
+					       rotate:45,
+					       interval:0,
+						   margin: 0.5,
+						   textStyle:{
+						   //color:"red", //刻度颜色
+						   fontSize:0.5  //刻度大小
 					
+						}
+					},   */
+				   
+				   
+				
+				
 				} ],
 				
 				yAxis : [ {
 
 					type : 'value',
+					//splitArea : {show : true},
 					axisLabel : {
 						formatter : '{value}%'
 					}
