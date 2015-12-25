@@ -39,6 +39,12 @@
 			
 			//ajax查询后台数据存放在各个变量中
 			var ratioTitle="专线可用率曲线图";
+			var leg=[];
+			var date="";
+			var dtime="";
+			var dmark="";
+			var d = new Date();
+			var str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 			var xTimeArr = [];
 			var yAvailableRatioArr =[];
 			var marklineAvailableRatioThreshold = null;
@@ -52,13 +58,18 @@
 								if (result) {
 									console.log(result[0].bank_name);
 									ratioTitle = result[0].bank_name + ratioTitle;
+									dtime=result[14].time;
+									dmark=result[14].available_ratio_threshold;
+									leg[0]=dtime+"分可用率"+result[14].available_ratio+"%"+"    阀值"+dmark+"%"+"    周期=1分钟    "+str;
+									date=leg[0];
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
 										    xTimeArr.push(result[i].time);
 										    yAvailableRatioArr.push(result[i].available_ratio);
 									     }
 									marklineAvailableRatioThreshold = result[0].available_ratio_threshold;
-
+                                    
+                                   
 								}
 
 							},
@@ -85,18 +96,30 @@
 					}
 					
 			    },
-				tooltip : {
-					trigger: 'axis',
-					
-				},
+			    
 				grid:{
 					x:45,
 					y:35,
-					height:'71%', 
-					width:'82%'
+					height:'130px', 
+					width:'370px'
 					
 				},
 				
+			    legend: {
+			    	show:true,
+			    	x:'45px',
+			    	y:'195px',
+			    	itemWidth:18,
+			    	itemHeight:12,
+			    	padding:[0,0,0,0],
+			    	itemGap:2,
+			    	selectedMode:false,			    	
+			    	orient:'vertical',
+			    	textStyle:{
+			    		fontSize:'6',
+			    	},
+	               data:leg,
+			    },
 				
 				calculable : true,
 
@@ -133,26 +156,27 @@
 
 				
 				series : [ {
-					name : ratioTitle,
+					name : date,
 					type : 'line',
 					data : yAvailableRatioArr,
-					
+					clickable:false,
 					markLine : {
-	                    
+						clickable:false,
 	                    data : [
-	                         [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: marklineAvailableRatioThreshold}]
-	                           ]
-			           }
-					
-
-				}, 
+	                        [{name: '可用率阀值',value: marklineAvailableRatioThreshold, xAxis: -1, yAxis: marklineAvailableRatioThreshold},{xAxis:16,yAxis: marklineAvailableRatioThreshold}]
+	                 
+	                        ], 
+	                        
+			           },
+				},
+	 
 				
 				]
 				
 			
 			};
 			myChart.setOption(option);
-		    
+		
 		
 		}
 
