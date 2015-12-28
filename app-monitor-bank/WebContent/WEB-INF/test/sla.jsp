@@ -17,7 +17,7 @@
 <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 <style type="text/css">
 
-.div{width:438px;height:208px;border:0px;
+.div{height:208px;border:0px;
 }
 </style>
 </head>
@@ -147,6 +147,7 @@
 
 			// 为echarts对象加载数据 
 			myChart.setOption(option);
+			window.onresize = myChart.resize;
 		}
 
 		);

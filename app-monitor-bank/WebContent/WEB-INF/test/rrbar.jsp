@@ -40,6 +40,12 @@
 			
 			//ajax查询后台数据存放在各个变量中
 			var rrTitle="请求响应数统计";
+			var leg=[];
+			var leg1="";
+			var leg2="";
+			var dtime="";
+			var d = new Date();
+			var str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 			var xTimeArr = [];
 			var nomalRespArr = [];
 			var totalReqArr= [];
@@ -54,6 +60,11 @@
 								if (result) {
 									console.log(result[0].bank_name);
 									rrTitle = result[0].bank_name + rrTitle;
+									dtime=result[14].time;
+									leg[0]=dtime+"分请求数"+result[14].total_req+"笔";
+									leg[1]=dtime+"分正常响应数"+result[14].nomal_resp+"笔"+"    周期=1分钟  ";
+									leg1=leg[0];
+									leg2=leg[1];
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
 										    xTimeArr.push(result[i].time);
@@ -89,31 +100,19 @@
 			    },
 			    
 			    legend: {
-			        orient: 'vertical',      // 布局方式，默认为水平布局，可选为：
-			                                   // 'horizontal' ¦ 'vertical'
-			        x: 'right',               // 水平安放位置，默认为全图居中，可选为：
-			                                   // 'center' ¦ 'left' ¦ 'right'
-			                                   // ¦ {number}（x坐标，单位px）
-			        y: 'top',                  // 垂直安放位置，默认为全图顶端，可选为：
-			                                   // 'top' ¦ 'bottom' ¦ 'center'
-			                                   // ¦ {number}（y坐标，单位px）
-			        backgroundColor: 'rgba(0,0,0,0)',
-			        borderColor: '#ccc',       // 图例边框颜色
-			        borderWidth: 0,            // 图例边框线宽，单位px，默认为0（无边框）
-			        padding: 5,                // 图例内边距，单位px，默认各方向内边距为5，
-			                                   // 接受数组分别设定上右下左边距，同css
-			        itemGap: 5,               // 各个item之间的间隔，单位px，默认为10，
-			                                   // 横向布局时为水平间隔，纵向布局时为纵向间隔
-			        itemWidth: 15,             // 图例图形宽度
-			        itemHeight: 10.5,            // 图例图形高度
-			        textStyle: {
-			        	fontSize: 5,
-			            color: '#333'          // 图例文字颜色
-			        },
-			        data:[
-			            '正常响应',
-			            '总请求'
-			        ]
+			    	show:true,
+			    	x:'40px',
+			    	y:'195px',
+			    	itemWidth:18,
+			    	itemHeight:12,
+			    	padding:[0,0,0,0],
+			    	itemGap:20,
+			    	selectedMode:false,			    	
+			    	orient:'horizontal',
+			    	textStyle:{
+			    		fontSize:'6',
+			    	},
+	               data:leg,
 			    },
 			    
 			    
@@ -127,8 +126,8 @@
 				grid:{
 					x:35,
 					y:35,
-					height:'71%', 
-					width:'84%'
+					height:'130px', 
+					width:'390px'
 					
 				},
 				
@@ -160,14 +159,14 @@
 				
 			    series : [
 			              {
-			                  name:'正常响应',
+			                  name:leg2,
 			                  type:'bar',
 			                  itemStyle: {normal: {color:'rgba(181,195,52,1)', label:{show:true,textStyle:{color:'#27727B'}}}},
 			                  data:nomalRespArr
 			              },
 
 			              {
-			                  name:'总请求',
+			                  name:leg1,
 			                  type:'bar',
 			                  xAxisIndex:1,
 			                  itemStyle: {normal: {color:'rgba(181,195,52,0.5)', label:{show:true}}},
