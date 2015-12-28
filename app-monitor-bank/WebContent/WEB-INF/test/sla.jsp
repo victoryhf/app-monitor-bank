@@ -41,6 +41,12 @@
 			
 			//ajax查询后台数据存放在各个变量中
 			var slaTitle="sla曲线图";
+			var leg=[];
+			var date="";
+			var dtime="";
+			var dmark="";
+			var d = new Date();
+			var str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 			var xTimeArr = [];
 			var yAverageSla =[];
 			var marklineSlaThreshold = null;
@@ -54,6 +60,10 @@
 								if (result) {
 									console.log(result[0].bank_name);
 									slaTitle = result[0].bank_name + slaTitle;
+									dtime=result[14].time;
+									dmark=result[14].sla_threshold;
+									leg[0]=dtime+"分sla"+result[14].average_sla+"ms"+"    阀值"+dmark+"ms"+"    周期=1分钟    "+str;
+									date=leg[0];
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
 										    xTimeArr.push(result[i].time);
@@ -87,18 +97,28 @@
 					}
 			    },
 			    
-				tooltip : {
-					trigger: 'axis',
-					//show:false
-				},
 				grid:{
 					x:58,
 					y:35,
-					height:'70%', 
-					width:'79%'
+					height:'130px', 
+					width:'350px'
 					
 				},
-			    
+				 legend: {
+				    	show:true,
+				    	x:'60px',
+				    	y:'195px',
+				    	itemWidth:18,
+				    	itemHeight:12,
+				    	padding:[0,0,0,0],
+				    	itemGap:2,
+				    	selectedMode:false,			    	
+				    	orient:'vertical',
+				    	textStyle:{
+				    		fontSize:'6',
+				    	},
+		               data:leg,
+				    },
 				
 				calculable : true,
 
@@ -119,7 +139,7 @@
 
 				
 				series : [ {
-					name : slaTitle,
+					name : date,
 					type : 'line',
 				   //折线颜色
 				   // itemStyle:{
@@ -130,9 +150,9 @@
 				   // 	}
 				   // },
 					data : yAverageSla,
-					
+					clickable:false,
 					markLine : {
-	                    
+						clickable:false,
 	                    data : [
 	                         [{name: 'SLA阀值',value: marklineSlaThreshold, xAxis: -1, yAxis: marklineSlaThreshold},{xAxis:16,yAxis: marklineSlaThreshold}]
 	                           ]
