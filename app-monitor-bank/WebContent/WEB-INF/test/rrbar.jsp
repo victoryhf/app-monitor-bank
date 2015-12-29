@@ -60,9 +60,9 @@
 								if (result) {
 									console.log(result[0].bank_name);
 									rrTitle = result[0].bank_name + rrTitle;
-									dtime=result[14].time;
-									leg[0]=dtime+"分请求数"+result[14].total_req+"笔";
-									leg[1]=dtime+"分正常响应数"+result[14].nomal_resp+"笔"+"    周期=1分钟  ";
+									dtime=result[result.length-1].time;
+									leg[0]=dtime+"分请求数"+result[result.length-1].total_req+"笔";
+									leg[1]=dtime+"分正常响应数"+result[result.length-1].nomal_resp+"笔"+"    周期=1分钟  ";
 									leg1=leg[0];
 									leg2=leg[1];
 									for (var i = 0; i < result.length; i++) {

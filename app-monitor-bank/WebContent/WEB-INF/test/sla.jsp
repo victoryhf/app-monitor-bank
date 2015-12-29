@@ -60,9 +60,9 @@
 								if (result) {
 									console.log(result[0].bank_name);
 									slaTitle = result[0].bank_name + slaTitle;
-									dtime=result[14].time;
-									dmark=result[14].sla_threshold;
-									leg[0]=dtime+"分sla"+result[14].average_sla+"ms"+"    阀值"+dmark+"ms"+"    周期=1分钟    "+str;
+									dtime=result[result.length-1].time;
+									dmark=result[result.length-1].sla_threshold;
+									leg[0]=dtime+"分sla"+result[result.length-1].average_sla+"ms"+"    阀值"+dmark+"ms"+"    周期=1分钟    "+str;
 									date=leg[0];
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);

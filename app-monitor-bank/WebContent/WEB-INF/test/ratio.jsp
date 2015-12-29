@@ -26,6 +26,8 @@
 	<div id="main" class="div"></div>
 
 	<script type="text/javascript">
+	
+	   
 		// 路径配置
 		require.config({
 			paths : {
@@ -58,9 +60,9 @@
 								if (result) {
 									console.log(result[0].bank_name);
 									ratioTitle = result[0].bank_name + ratioTitle;
-									dtime=result[14].time;
-									dmark=result[14].available_ratio_threshold;
-									leg[0]=dtime+"分可用率"+result[14].available_ratio+"%"+"    阀值"+dmark+"%"+"    周期=1分钟    "+str;
+									dtime=result[result.length-1].time;
+									dmark=result[result.length-1].available_ratio_threshold;
+									leg[0]=dtime+"分可用率"+result[result.length-1].available_ratio+"%"+"    阀值"+dmark+"%"+"    周期=1分钟    "+str;
 									date=leg[0];
 									for (var i = 0; i < result.length; i++) {
 										    console.log(result[i].time);
