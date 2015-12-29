@@ -113,13 +113,13 @@
 <div style="margin:8px 0px 0px 0px;">
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span4"  id="rowLeft" >
+      <div class="span4"  style="width : 33%; margin-left: 0;" id="rowLeft" >
       </div>
     
-      <div class="span4"  id="rowMiddle">
+      <div class="span4"  style="width : 33%; margin-left: 0;" id="rowMiddle">
       </div>
     
-      <div class="span4"  id="rowRight">
+      <div class="span4"  style="width : 33%; margin-left: 0;" id="rowRight">
      </div>
     
     </div>
