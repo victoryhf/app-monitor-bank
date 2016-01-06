@@ -17,7 +17,7 @@
 <title>银行SLA监控系统</title>
 
 <script type="text/javascript"></script>
-<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script src="<%=path%>/build/dist/echarts.js"></script>
 <link href="<%=path%>/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="<%=path%>/bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
@@ -133,7 +133,7 @@
 		// 路径配置
 		require.config({
 			paths : {
-				echarts : 'http://echarts.baidu.com/build/dist'
+				echarts : '<%=path%>/build/dist/'
 			}
 		});
 
