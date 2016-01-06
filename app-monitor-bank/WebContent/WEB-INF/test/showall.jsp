@@ -17,12 +17,12 @@
 <title>银行SLA监控系统</title>
 
 <script type="text/javascript"></script>
-<script src="<%=path%>/build/dist/echarts.js"></script>
-<link href="<%=path%>/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=path%>/bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="<%=path%>/bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
-<script src="<%=path%>/jquery-1.9.1/jquery.min.js"></script>
-<script src="<%=path%>/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="./build/dist/echarts.js"></script>
+<link href="./bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="./bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
+<script src="./jquery-1.9.1/jquery.min.js"></script>
+<script src="./bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 .title_left{
@@ -133,7 +133,7 @@
 		// 路径配置
 		require.config({
 			paths : {
-				echarts : '<%=path%>/build/dist/'
+				echarts : './build/dist/'
 			}
 		});
 
