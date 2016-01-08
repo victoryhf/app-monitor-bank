@@ -5,7 +5,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
 String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/sor"+path+"/";
 pageContext.setAttribute("basePath", basePath);
 
 %>
@@ -17,8 +17,7 @@ pageContext.setAttribute("basePath", basePath);
 <title>配置信息</title>
 </head>
 <body>
-   
-	<input type="button" value="增加配置" onclick="location.href='${basePath}addconfig.jsp'" />
+    <a href="../addconfig.jsp">增加配置</a>
 	<c:if test="${!(empty requestScope.configs)}">
 		<table border="1" cellpadding="10" cellspacing="0">
 			<tr>
@@ -43,10 +42,10 @@ pageContext.setAttribute("basePath", basePath);
 					<td>${config.rstatus}</td>
 					<td>${config.mail_to}</td>
 					<td><a 
-						href="${pageContext.request.contextPath}/config/queryConfigByid.action?id=${config.id}"><font
+						href="./queryConfigByid.action?id=${config.id}"><font
 							color="blue">修改</font></a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/config/deleteConfigByid.action?id=${config.id}"><font
+						href="./deleteConfigByid.action?id=${config.id}"><font
 							color="blue">删除</font></a></td>
 				</tr>
 			</c:forEach>

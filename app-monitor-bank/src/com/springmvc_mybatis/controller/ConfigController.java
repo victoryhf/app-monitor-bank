@@ -34,17 +34,6 @@ public class ConfigController {
 
 	}
 	
-	//生产查询所有配置信息
-		@RequestMapping("/configlistall")
-		public String getAllConfig(Model model) {
-			List<Config> configs = configrmapper.getAllConfigs();
-			model.addAttribute("configs", configs);
-			return "configlistall";
-
-		}
-		
-
-	
 	//新增配置信息
 	@RequestMapping("/addconfig")
 	public String addConfig(HttpServletRequest request, Model model) {
@@ -68,28 +57,6 @@ public class ConfigController {
 		
 	}
 	
-	  //生产新增配置信息addconfigall
-		@RequestMapping("/addconfigall")
-		public String addConfigall(HttpServletRequest request, Model model) {
-			String bankid = request.getParameter("bankid");
-			String bankname = request.getParameter("bankname");
-			String sla_threshold = request.getParameter("sla_threshold");
-			String available_ratio_threshold = request.getParameter("available_ratio_threshold");
-			String max_beyond_time = request.getParameter("max_beyond_time");
-			Integer rstatus = Integer.valueOf(request.getParameter("rstatus"));
-			String mail_to = request.getParameter("mail_to");
-			int config_add = configrmapper.addConfig(bankid, bankname,sla_threshold,available_ratio_threshold,
-					max_beyond_time,rstatus,mail_to);
-			
-			if (config_add != 1) {
-				//System.out.println("Error insert!");
-				return "addconfigfail";
-			} else {
-				//model.addAttribute("config", config_add);
-				return "redirect:/config/configlistall.action";
-			}
-			
-		}
 	
 	
 	//通过id查询一条配置信息
@@ -102,15 +69,7 @@ public class ConfigController {
 		
 	}
 	
-	//生产通过id查询一条配置信息
-		@RequestMapping("/queryConfigByidall")
-		public String queryConfigByidall(HttpServletRequest request, Model model) {
-			int id =  Integer.parseInt(request.getParameter("id"));		
-			Config config_one = configrmapper.getConfigByid(id);
-			model.addAttribute("config", config_one);	
-			return "modifyconfigall";
-			
-		}
+
 	
     //更新配置信息
     @RequestMapping("/updateConfigByid")
@@ -119,13 +78,7 @@ public class ConfigController {
 		return "redirect:/config/configlist.action";
 	}
     
-    //生产更新配置信息
-    @RequestMapping("/updateConfigByidall")
-	public String updateConfigByidall(Config config) {
-		configrmapper.updateConfigByid(config);
-		return "redirect:/config/configlistall.action";
-	}
-    
+   
     
     //删除一条配置信息
     @RequestMapping("/deleteConfigByid")
@@ -135,13 +88,6 @@ public class ConfigController {
 		return "redirect:/config/configlist.action";
 	}
     
-    //生产删除一条配置信息
-    @RequestMapping("/deleteConfigByidall")
-	public String delConfigall(Config config) {
-		configrmapper.deleteConfig(config);
-		//System.out.println(config);
-		return "redirect:/config/configlistall.action";
-	}
 
 
 	

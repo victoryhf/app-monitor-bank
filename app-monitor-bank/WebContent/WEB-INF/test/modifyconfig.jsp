@@ -5,7 +5,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
 String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/sor"+path+"/";
 pageContext.setAttribute("basePath", basePath);
 
 %>
@@ -28,7 +28,7 @@ pageContext.setAttribute("basePath", basePath);
  -->
  </head>
  <body>
-  <form action="${pageContext.request.contextPath}/config/updateConfigByid.action" name="form" method="post">
+  <form action="./updateConfigByid.action" name="form" method="post">
   <input type="hidden" id="id" name="id" value=${config.id} />
   <c:if test="${!(empty requestScope.config)}">
    <table width="60%" border="1">

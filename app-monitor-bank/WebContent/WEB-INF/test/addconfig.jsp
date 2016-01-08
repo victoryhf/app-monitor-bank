@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  -->
  </head>
  <body>
-  <form action="config/addconfig.action" name="form" method="post">
+  <form action="./config/addconfig.action" name="form" method="post">
    <table width="60%" border="1">
     <tr align="left">
      <td>
