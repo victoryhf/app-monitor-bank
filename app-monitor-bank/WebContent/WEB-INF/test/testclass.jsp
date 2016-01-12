@@ -127,19 +127,57 @@
 
 <script type="text/javascript">
     //使用Jquery的append函数在指定元素的结尾插入指定内容
+	
+    
+    
+    $("#rowLeft").append('<div id="ratio0" style="height:300px"></div>');
+	$("#rowMiddle").append('<div id="sla0" style="height:300px"></div>');
+    $("#rowRight").append('<div id="rrbar0" style="height:300px"></div>');
 	$("#rowLeft").append('<div id="ratio1" style="height:300px"></div>');
 	$("#rowMiddle").append('<div id="sla1" style="height:300px"></div>');
 	$("#rowRight").append('<div id="rrbar1" style="height:300px"></div>');
+	$("#rowLeft").append('<div id="ratio2" style="height:300px"></div>');
+	$("#rowMiddle").append('<div id="sla2" style="height:300px"></div>');
+	$("#rowRight").append('<div id="rrbar2" style="height:300px"></div>');
+
 	
 	//配置ECharts路径 
 	require.config({paths:{echarts:'http://echarts.baidu.com/build/dist'}});
 	
 	//使用ECharts图表库并按需加载折线图和柱状图后进入drawEcharts初始化方法
-	require(['echarts','echarts/chart/line','echarts/chart/bar'],drawEcharts);
+	require(['echarts','echarts/chart/line','echarts/chart/bar'],forEcharts);
+	
+	function forEcharts(ec){
+
+		//使用Jquery-Ajax获取所需数据
+		$.ajax({
+			type:'post',//请求方式 
+			async:false,//设置为同步请求
+			url:"banksla/selectconfig.action",//请求地址
+			data:{},//请求数据类型 
+			dataType:"json",//请求返回的数据类型
+			success:function(result){//请求成功后回调函数
+				if(result){
+					for(var i=0;i<result.length;i++){
+
+						drawEcharts(ec,result[i].bankid,i);
+					}
+				}
+				
+			},
+			error:function(errorMsg){//请求失败后回调函数
+				alert("数据加载出错");
+			    //设置ECharts过渡控制
+				myChart.hideLoading();
+			},
+		});
+		
+		
+	}
 	
 	//执行drawEcharts所有option初始化方法
-    function drawEcharts(ec){
-		
+    function drawEcharts(ec,bankid,i){
+    	
 		var leg=[];
 		var date="";
     	var ratioTitle="";
@@ -164,7 +202,7 @@
 		$.ajax({
 			type:'post',//请求方式 
 			async:false,//设置为同步请求
-			url:"banksla/ratiolist.action",//请求地址
+			url:"banksla/ratiolist.action?bankid="+bankid,//请求地址
 			data:{},//请求数据类型 
 			dataType:"json",//请求返回的数据类型
 			success:function(result){//请求成功后回调函数
@@ -198,17 +236,17 @@
 				myChart.hideLoading();
 			},
 		});
-		drawratio1(ec,date,leg,ratioTitle,xTimeArr,yAvailableRatioArr,marklineAvailableRatioThreshold);
-		drawsla1(ec,slaTitle,legn,daten,yAverageSla,marklineSlaThreshold,xTimeArr);
-		drawrrbar1(ec,rrTitle,legd,leg1,leg2,nomalRespArr,totalReqArr,xTimeArr);
+		drawratio1(ec,date,leg,ratioTitle,xTimeArr,yAvailableRatioArr,marklineAvailableRatioThreshold,i);
+		drawsla1(ec,slaTitle,legn,daten,yAverageSla,marklineSlaThreshold,xTimeArr,i);
+		drawrrbar1(ec,rrTitle,legd,leg1,leg2,nomalRespArr,totalReqArr,xTimeArr,i);
 	}
 	
 	//中国银联CP00010001专线可用率
-	function drawratio1(ec,date,leg,ratioTitle,xTimeArr,yAvailableRatioArr,marklineAvailableRatioThreshold){
+	function drawratio1(ec,date,leg,ratioTitle,xTimeArr,yAvailableRatioArr,marklineAvailableRatioThreshold,i){
 
 		
 		// 基于准备好的容器,初始化echarts图表
-		myChart = ec.init(document.getElementById('ratio1'));
+		myChart = ec.init(document.getElementById('ratio'+i));
 		var option={
 				
 				title:{//标题
@@ -291,9 +329,9 @@
 	
 	
 	//中国银联CP00010001专线时效
-	function drawsla1(ec,slaTitle,legn,daten,yAverageSla,marklineSlaThreshold,xTimeArr){
+	function drawsla1(ec,slaTitle,legn,daten,yAverageSla,marklineSlaThreshold,xTimeArr,i){
 		// 基于准备好的容器,初始化echarts图表
-		myChart = ec.init(document.getElementById('sla1'));
+		myChart = ec.init(document.getElementById('sla'+i));
 		var option={
 				
 				title:{//标题
@@ -376,9 +414,9 @@
 	}
 	
 	//中国银联CP00010001专线请求响应
-	function drawrrbar1(ec,rrTitle,legd,leg1,leg2,nomalRespArr,totalReqArr,xTimeArr){
+	function drawrrbar1(ec,rrTitle,legd,leg1,leg2,nomalRespArr,totalReqArr,xTimeArr,i){
 		// 基于准备好的容器,初始化echarts图表
-		myChart = ec.init(document.getElementById('rrbar1'));
+		myChart = ec.init(document.getElementById('rrbar'+i));
 		var option={
 				
 				title:{//标题

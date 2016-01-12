@@ -9,6 +9,7 @@ import java.util.List;
 
 
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
 import com.springmvc_mybatis.bean.Banksla;
 import com.springmvc_mybatis.bean.Config;
 import com.springmvc_mybatis.mapper.BankslaMapper;
+import com.springmvc_mybatis.mapper.ConfigMapper;
 
 
 
@@ -40,10 +43,43 @@ public class BankslaController {
 	@Autowired
 	private BankslaMapper bankslamapper;
 	
+	@Autowired
+	private ConfigMapper configrmapper;
+	
+	
+	
+	@RequestMapping("/selectconfig")
+	public String seleconfig(HttpServletRequest request,HttpServletResponse response, Model model,Banksla banksla) {
+	
+		List<Config> list=configrmapper.gettbankid();
+		response.setContentType("text/html; charset=utf-8");
+		JSONArray json=JSONArray.fromObject(list);
+		System.out.println(json.toString());
+		
+		PrintWriter out;
+		try {
+			
+			out = response.getWriter();
+	        out.println(json);  
+	        out.flush();  
+	        out.close();  
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "testclass";
+		
+	}
+	
+	
 	@RequestMapping("/ratiolist")
 	public String selebanksla(HttpServletRequest request,HttpServletResponse response, Model model){
 		
-		List<Banksla> array = bankslamapper.getAllbanksla();
+		String bankid=request.getParameter("bankid");
+		
+		List<Banksla> array = bankslamapper.getAllbanksla(bankid);
 		response.setContentType("text/html; charset=utf-8");
 		JSONArray json=JSONArray.fromObject(array);
 		System.out.println(json.toString());
@@ -92,6 +128,9 @@ public class BankslaController {
 		return "ratio";
 		
 	}
+	
+	
+	
 
 }
 	

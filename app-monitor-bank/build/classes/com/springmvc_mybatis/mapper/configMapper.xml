@@ -40,5 +40,9 @@
         delete from config where id=#{id}
     </delete>
     
+    <!-- 获取所有的银行专线 -->
+    <select id="gettbankid" resultMap="configResult">
+		select bankid from config
+	</select>
     
 </mapper>
