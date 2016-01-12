@@ -7,7 +7,11 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-%>   
+%>
+<%   
+  //页面每隔60秒自动刷新一遍        
+   response.setHeader("refresh" , "60" );   
+%>  
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,17 +20,17 @@
 <title>银行SLA监控系统</title>
 
 <!-- ECharts单文件引入-->
-<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script src="./build/dist/echarts.js"></script>
 <!--引入Jquery核心文件-->
-<script src="<%=path%>/jquery-1.9.1/jquery.min.js"></script>
+<script src="./jquery-1.9.1/jquery.min.js"></script>
 <!--引入 Bootstrap核心 文件 -->
-<script src="<%=path%>/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="./bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <!--引入bootstrap.min.css文档的外部样式表-->
-<link href="<%=path%>/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 <!--引入bootstrap-responsive.min.css文档的外部样式表 -->
-<link href="<%=path%>/bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="./bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
 <!--引入bootstrap-3.3.5-dist/css/docs.css文档的外部样式表-->
-<link href="<%=path%>/bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
+<link href="./bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
 <!--定义页面Top样式-->
 <style type="text/css">
 	.title_left{
@@ -126,20 +130,33 @@
 </div>
 
 <script type="text/javascript">
-    //使用Jquery的append函数在指定元素的结尾插入指定内容
+    
+    
+	//使用Jquery-Ajax获取所需数据
+	$.ajax({
+		type:'post',//请求方式 
+		async:false,//设置为同步请求
+		url:"banksla/selectconfig.action",//请求地址
+		data:{},//请求数据类型 
+		dataType:"json",//请求返回的数据类型
+		success:function(result){//请求成功后回调函数
+			if(result){
+				for(var i=0;i<result.length;i++){
+                    ////使用Jquery的append函数在指定元素的结尾插入指定内容
+				    $("#rowLeft").append('<div id="ratio'+i+'" style="height:300px"></div>');
+					$("#rowMiddle").append('<div id="sla'+i+'" style="height:300px"></div>');
+				    $("#rowRight").append('<div id="rrbar'+i+'" style="height:300px"></div>');
+				}
+			}
+			
+		},
+		error:function(errorMsg){//请求失败后回调函数
+			alert("数据加载出错");
+		    //设置ECharts过渡控制
+			myChart.hideLoading();
+		},
+	});
 	
-    
-    
-    $("#rowLeft").append('<div id="ratio0" style="height:300px"></div>');
-	$("#rowMiddle").append('<div id="sla0" style="height:300px"></div>');
-    $("#rowRight").append('<div id="rrbar0" style="height:300px"></div>');
-	$("#rowLeft").append('<div id="ratio1" style="height:300px"></div>');
-	$("#rowMiddle").append('<div id="sla1" style="height:300px"></div>');
-	$("#rowRight").append('<div id="rrbar1" style="height:300px"></div>');
-	$("#rowLeft").append('<div id="ratio2" style="height:300px"></div>');
-	$("#rowMiddle").append('<div id="sla2" style="height:300px"></div>');
-	$("#rowRight").append('<div id="rrbar2" style="height:300px"></div>');
-
 	
 	//配置ECharts路径 
 	require.config({paths:{echarts:'http://echarts.baidu.com/build/dist'}});
