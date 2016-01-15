@@ -159,7 +159,7 @@
 	
 	
 	//配置ECharts路径 
-	require.config({paths:{echarts:'http://echarts.baidu.com/build/dist'}});
+	require.config({paths:{echarts:'./build/dist/'}});
 	
 	//使用ECharts图表库并按需加载折线图和柱状图后进入drawEcharts初始化方法
 	require(['echarts','echarts/chart/line','echarts/chart/bar'],forEcharts);

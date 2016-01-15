@@ -69,7 +69,7 @@ public class BankslaController {
 			e.printStackTrace();
 		}
 		
-		return "testclass";
+		return "showsla";
 		
 	}
 	
