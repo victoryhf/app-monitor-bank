@@ -87,13 +87,13 @@
 		line-height:25px;
 		color:#3F3F3F;
 		background-color:inherit;
-		background:url(/app-monitor-bank/images/systitle.png) left top no-repeat;
+		background:url(https://sars.99bill.net/sor/app-monitor-bank/images/systitle.png) left top no-repeat;
     }
     #bodyTopMain{
 		width:auto;
 		min-width:1260px;
 		height:3px;
-		background:url(/app-monitor-bank/images/body_top_bg.gif) 0 0 repeat-x #39A09B;
+		background:url(https://sars.99bill.net/sor/app-monitor-bank/images/body_top_bg.gif) 0 0 repeat-x #39A09B;
 		color:#C5F6F2;
 		padding:auto;
 		z-index: 100;
@@ -109,7 +109,7 @@
 <div id="topMain">
 	<div id="topContainer">
 		<div id="top">
-			<img src="/app-monitor-bank/images/logo.gif" alt="foot step" width="79" height="44" class="logo">
+			<img src="https://sars.99bill.net/sor/app-monitor-bank/images/logo.gif" alt="foot step" width="79" height="44" class="logo">
 			<div class="systitle"></div>
 		</div>
 	</div>
