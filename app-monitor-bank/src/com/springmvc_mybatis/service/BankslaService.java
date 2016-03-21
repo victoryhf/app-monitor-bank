@@ -132,8 +132,7 @@ public class BankslaService {
 	 * @param array
 	 */
 	public void checkThresholdAndMail(List<Banksla> array){
-		String mailto = null;
-		String content = "";
+		
 		Map<String, List<Banksla>> bankInfo = new HashMap<String, List<Banksla>>();
 		for (int i = 0; i < array.size(); i++) {
 			if(Integer.parseInt(array.get(i).getAvailable_ratio()) < Integer.parseInt(array.get(i).getAvailable_ratio_threshold())){
@@ -148,32 +147,32 @@ public class BankslaService {
 		}
 		for (String key : bankInfo.keySet()) {
 			if(bankInfo.get(key).size() >= 4){
-				mailto = bankInfo.get(key).get(0).getMail_to();
-				content += key+"在";
+				String mailto = bankInfo.get(key).get(0).getMail_to();
+				String content = key+"在";
 				for (int i = 0; i < bankInfo.get(key).size(); i++) {
 					content += bankInfo.get(key).get(i).getTime() + "的可用率为" + bankInfo.get(key).get(i).getAvailable_ratio() + "%,";
 				}
 				content += "均低于阀值" + bankInfo.get(key).get(0).getAvailable_ratio_threshold() + "%;<br/>";
+				MailUtil mailUtil = new MailUtil("sh-nlb-mhc.99bill.com", "monitor_op@99bill.com",
+			               "monitor_op@99bill.com", "monitor_op@99bill.com", "1qaz@WSX");
+				if(EmptyUtil.isNotEmpty(mailto)){
+					try {
+						AlarmInfo alarmInfo = new AlarmInfo();
+						alarmInfo.setContent(content);
+						alarmInfoMapper.addAlarmInfo(alarmInfo);
+						String[] tos = mailto.split(";");
+						String subject = "运维监控系统告警【重要】：15分钟内"+key+"可用率   告警ID："+alarmInfo.getAlarmInfoId();
+						mailUtil.send(tos, true, subject, content, true, null);
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		}
-		MailUtil mailUtil = new MailUtil("sh-nlb-mhc.99bill.com", "monitor_op@99bill.com",
-	               "monitor_op@99bill.com", "monitor_op@99bill.com", "1qaz@WSX");
-		if(EmptyUtil.isNotEmpty(mailto)){
-			try {
-				
-				AlarmInfo alarmInfo = new AlarmInfo();
-				alarmInfo.setContent(content);
-				int alarmId = alarmInfoMapper.addAlarmInfo(alarmInfo);
-				String[] tos = mailto.split(";");
-				String subject = "运维监控系统告警【重要】：15分钟内银行专线可用率   告警ID："+alarmId;
-				mailUtil.send(tos, true, subject, content, true, null);
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 	}
 }

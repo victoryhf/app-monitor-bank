@@ -5,7 +5,7 @@
 		<result column="alarm_info_id" property="alarmInfoId" />
 		<result column="content" property="content" />
 	</resultMap>
-	<insert id="addAlarmInfo"  parameterType="AlarmInfo" useGeneratedKeys="true" keyProperty="alarm_info_id">
+	<insert id="addAlarmInfo"  parameterType="AlarmInfo" useGeneratedKeys="true" keyProperty="alarmInfoId">
          insert into alarm_info(content) values(#{content})
     </insert>
 </mapper>
