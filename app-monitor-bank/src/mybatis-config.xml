@@ -11,6 +11,7 @@
 	<typeAlias type="com.springmvc_mybatis.bean.User" alias="User" />
 	<typeAlias type="com.springmvc_mybatis.bean.Config" alias="Config" />
 	<typeAlias type="com.springmvc_mybatis.bean.Banksla" alias="Banksla" />
+	<typeAlias type="com.springmvc_mybatis.bean.AlarmInfo" alias="AlarmInfo" />
     </typeAliases>
     
 	<!-- 设置数据库连接环境 -->
@@ -19,5 +20,6 @@
 		<mapper resource="com/springmvc_mybatis/mapper/userMapper.xml" />
 		<mapper resource="com/springmvc_mybatis/mapper/configMapper.xml" />
 		<mapper resource="com/springmvc_mybatis/mapper/bankslaMapper.xml" />
+		<mapper resource="com/springmvc_mybatis/mapper/alarmInfoMapper.xml" />
 	</mappers>
 </configuration>

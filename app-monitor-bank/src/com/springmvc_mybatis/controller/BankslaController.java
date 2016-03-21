@@ -5,30 +5,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-
-
-
-
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
-
-
 
 import com.springmvc_mybatis.bean.Banksla;
 import com.springmvc_mybatis.bean.Config;
 import com.springmvc_mybatis.mapper.BankslaMapper;
 import com.springmvc_mybatis.mapper.ConfigMapper;
+import com.springmvc_mybatis.service.BankslaService;
 
 
 
@@ -46,6 +38,9 @@ public class BankslaController {
 	@Autowired
 	private ConfigMapper configrmapper;
 	
+	@Autowired
+	@Qualifier("bankslaService")
+	private BankslaService bankslaService;
 	
 	
 	@RequestMapping("/selectconfig")
@@ -101,6 +96,58 @@ public class BankslaController {
 		return "ratio";
 		
 	}
+	
+	/**
+	 * 监控专线可用率合并借口
+	 * @author xuqq   2016年3月3日    下午3:51:09
+	 *
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getAllratio")
+	public String getAllbanksla(HttpServletRequest request,HttpServletResponse response, Model model){
+		
+		bankslaService.getAllbanksla(request, response, model);
+		return "ratio";
+		
+	}
+	
+	/**
+	 * 获取sla分页
+	 * @author xuqq   2016年3月7日    上午11:27:43
+	 *
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getBankslaPage")
+	public String getBankslaPage(HttpServletRequest request,HttpServletResponse response, Model model){
+		
+		bankslaService.getBankslaPage(request, response, model);
+	    
+		return "ratio";
+	}
+	
+	/**
+	 * 银行专线请求和相应数据分页
+	 * @author xuqq   2016年3月10日    下午5:21:04
+	 *
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getBankRequestPage")
+	public String getBankRequestPage(HttpServletRequest request,HttpServletResponse response, Model model){
+		
+		bankslaService.getBankslaPage(request, response, model);
+	    
+		return "ratio";
+	}
+	
 	
 	@RequestMapping("/queryRatioListBybid")
 	public String queryRatioList(HttpServletRequest request,HttpServletResponse response, Model model,Banksla banksla) {

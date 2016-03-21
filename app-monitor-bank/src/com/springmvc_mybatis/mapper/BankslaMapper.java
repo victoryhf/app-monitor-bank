@@ -15,7 +15,10 @@ public interface BankslaMapper {
 	
 	List<Banksla> getAllbanksla(@Param(value ="bankid")String bankid);
 	
+	List<Banksla> getAllbankslas();
+	
 	List<Banksla> getbankslaBybid(Banksla banksla);
  
+	List<Banksla> getBankslaPage(@Param(value ="start")int start,@Param(value ="length")int length);
 
 }

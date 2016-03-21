@@ -19,6 +19,8 @@ public class Banksla implements Serializable{
 	private String available_ratio_threshold;
 	
 	private String sla_threshold;
+	
+	private String mail_to;
 
 	
 	
@@ -98,6 +100,14 @@ public class Banksla implements Serializable{
 	public void setAvailable_ratio(String available_ratio) {
 		this.available_ratio = available_ratio;
 	}
-	
 
+	public String getMail_to() {
+		return mail_to;
+	}
+
+	public void setMail_to(String mail_to) {
+		this.mail_to = mail_to;
+	}
+	
+	
 }

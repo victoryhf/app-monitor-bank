@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc_mybatis.mapper.AlarmInfoMapper">
+	<resultMap type="alarmInfo" id="alarmResult">
+		<result column="alarm_info_id" property="alarmInfoId" />
+		<result column="content" property="content" />
+	</resultMap>
+	<insert id="addAlarmInfo"  parameterType="AlarmInfo" useGeneratedKeys="true" keyProperty="alarm_info_id">
+         insert into alarm_info(content) values(#{content})
+    </insert>
+</mapper>

@@ -17,6 +17,10 @@
 		select * from config
 	</select>
 	
+	<select id="getAllConfigCount" resultType="Integer">
+		select count(*) from config
+	</select>
+	
 	<!--查询单个配置信息根据id -->
 	<select id="getConfigByid" resultMap="configResult">
 		select * from config where id=#{id}

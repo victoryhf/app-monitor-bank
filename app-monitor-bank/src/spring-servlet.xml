@@ -11,6 +11,7 @@
 	<!-- Scans the classpath of this application for @Components to deploy as 
 		beans -->
 	<context:component-scan base-package="com.springmvc_mybatis.controller" />
+	<context:component-scan base-package="com.springmvc_mybatis.service" />
 
 
 	<!-- Configures the @Controller programming model -->

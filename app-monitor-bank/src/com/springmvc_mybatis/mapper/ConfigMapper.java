@@ -27,6 +27,8 @@ public interface ConfigMapper {
 	 
 	 Config getConfigByid(@Param(value = "id") int id);
 	 
+	 int getAllConfigCount();
+	 
 	 List<Config> gettbankid();
 	 
 	 
