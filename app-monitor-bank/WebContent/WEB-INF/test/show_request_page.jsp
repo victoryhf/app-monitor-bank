@@ -10,10 +10,6 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%   
-  //页面每隔60秒自动刷新一遍        
-  response.setHeader("refresh" , "60" );  
-%>  
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -62,7 +58,6 @@
 </head>
 <body>
 
-<input type="hidden" value="1" id="curPage">
 <!--设置页面top并引入指定的Css样式-->
 <div id="topMain">
 	<div id="topContainer">
@@ -86,13 +81,17 @@
 <div id="pageContain"></div>
 
 <script type="text/javascript">
-    var curPage = parseInt($("#curPage").val());
+    var curPage = 1;
     var pageSize = 9;
     var countPage = 1;
     
     $(function(){
     	loadCharts(curPage);
     });
+    
+    setInterval(function(){
+    	loadCharts(curPage);
+    },60000);
     
     function loadCharts(cur){
     	curPage = cur;
@@ -122,7 +121,6 @@
 					//生成分页标签
 					curPage = result.curPage;
 					countPage = result.countPage;
-					$("#curPage").val(curPage);
 					createPagination();
 					
 					var bankslaPage = result.bankslaPage;
