@@ -37,7 +37,7 @@
 	}
 	.list{
 		width: 33.33%;
-		height: 300px;
+		height: 320px;
 		display: inline-block;
 	}
 	#pageContain{
@@ -144,11 +144,10 @@
 								map["length"]++;
 							}
 						}
-						slaThresholdMap[bankslaPage[i].bank_name] = bankslaPage[0].sla_threshold;
+						slaThresholdMap[bankslaPage[i].bank_name] = bankslaPage[i].sla_threshold;
 						a[a.length] = bankslaPage[i].average_sla;
 						map[bankslaPage[i].bank_name] = a;
 					}
-					
 					var listHtml = "";
 					var k = 1;
 					for (var key in map) {
@@ -166,11 +165,24 @@
 							continue;
 						}
 						var legName = key+"   "+xTimeArr[xTimeArr.length-1]+"分sla"+map[key][map[key].length-1]+"ms    阀值"+slaThresholdMap[key]+"ms";
+						var markPointDate = new Array();
+						for (var j = 0; j < map[key].length; j++) {
+							if(parseInt(map[key][j]) >= parseInt(slaThresholdMap[key])){
+								if(typeof(xTimeArr[j]) != "undefined"){
+									var mpd = {name : '告警点', value : map[key][j], xAxis: xTimeArr[j], yAxis: map[key][j]};
+									markPointDate.push(mpd);
+								}
+								
+							}
+						}
 						var seriesData = {
 								name:legName,//系列名称
 								type:'line',//图表类型
 								clickable:true,//数据图形是否可点击
 					            data:map[key],//数据
+					            markPoint : {
+					                data : markPointDate
+					            },
 					            markLine : {
 					                data : [
 					                    [
@@ -223,7 +235,7 @@
 				}, */
 				legend:{//图例
 					x:'center',//水平安放位置
-					y:'265px',//垂直安放位置
+					y:'285px',//垂直安放位置
 					itemWidth:18,//图例图形宽度
 					itemHeight:12,//图例图形高度
 					padding:[0,0,0,0],//图例内边距
@@ -238,7 +250,7 @@
 				
 				grid:{//直角坐标系内绘图网格
 					x:'10%',//左上角横坐标    
-					y:10,//左上角纵坐标
+					y:30,//左上角纵坐标
 					height:'230px',//网格高度
 					width:'80%',//网格宽度 
 				},

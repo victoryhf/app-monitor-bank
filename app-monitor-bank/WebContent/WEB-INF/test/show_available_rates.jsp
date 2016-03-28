@@ -109,6 +109,34 @@
 						};
 						seriesArr[seriesArr.length] = seriesData;
 						
+					}
+					
+					var bankName = new Array();
+					//图例按照当前时间点sla排序
+					for(var key in map){
+						if(bankName.length == 0){
+							bankName[0] = key;
+						}else{
+							var hasJoin = false;
+							for (var i = 0; i < bankName.length; i++) {
+								var bn = bankName[i];
+								if(parseInt(map[key][map[key].length-1]) >= parseInt(map[bn][map[bn].length-1])){
+									bankName.splice(i, 0, key);
+									hasJoin = true;
+									break;
+								}
+							}
+							if(!hasJoin){
+								bankName[bankName.length] = key;
+							}
+						}
+					}
+					
+					for (var i = 0; i < bankName.length; i++) {
+						var legName = bankName[i] + " " + 
+			  			  xTimeArr[xTimeArr.length-1] + " " + 
+			 			  map[bankName[i]][map[bankName[i]].length-1] + "%";
+						
 						leg[leg.length] = legName;
 					}
 					drawratio(ec,leg,xTimeArr,seriesArr);

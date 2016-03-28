@@ -14,6 +14,7 @@
 		<result column="available_ratio_threshold" property="available_ratio_threshold" />
 		<result column="sla_threshold" property="sla_threshold" />
 		<result column="mail_to" property="mail_to" />
+		<result column="is_send_alarm_mail" property="isSendAlarmMail" />
 	</resultMap>
 	
 	<!--查询所有数据 -->
@@ -23,7 +24,7 @@
 	
 	<!--查询所有数据 -->
 	<select id="getAllbankslas" resultMap="banksla">
-		select b.bank_name,b.available_ratio_threshold,b.mail_to,b.sla_threshold,date_format(a.time,'%H:%i') as time,a.available_ratio,a.average_sla,a.normal_resp,a.total_req from banksla a,config b where a.bankid = b.bankid and a.time > (now() - interval 15 minute) order by b.bank_name asc,a.time asc
+		select b.bank_name,b.available_ratio_threshold,b.mail_to,b.sla_threshold,date_format(a.time,'%H:%i') as time,a.available_ratio,a.average_sla,a.normal_resp,a.total_req,b.is_send_alarm_mail,b.number,b.request,b.solution from banksla a,config b where a.bankid = b.bankid and a.time > (now() - interval 15 minute) order by b.bank_name asc,a.time asc
 	</select>
 	
 	<!--根据bankid查询数据 -->
@@ -33,6 +34,32 @@
 	
 	<!--分页查询sla  -->
 	<select id="getBankslaPage" resultMap="banksla">
-	SELECT t.bank_name,t.available_ratio_threshold,t.sla_threshold,DATE_FORMAT(a.time, '%H:%i') AS TIME,a.available_ratio,a.average_sla,a.normal_resp,a.total_req FROM banksla a, (SELECT c.bankid AS bankId,c.bank_name AS bank_name,c.sla_threshold AS sla_threshold ,c.available_ratio_threshold AS available_ratio_threshold FROM config c LIMIT #{start}, #{length}) t WHERE a.bankid = t.bankId AND a.time > (NOW() - INTERVAL 15 MINUTE) ORDER BY t.bank_name ASC,a.time ASC 
+		select 
+		  t.bank_name,
+		  t.available_ratio_threshold,
+		  t.sla_threshold,
+		  date_format(a.time, '%H:%i') as time,
+		  a.available_ratio,
+		  a.average_sla,
+		  a.normal_resp,
+		  a.total_req,
+		  t.important_level 
+		from
+		  banksla a,
+		  (select 
+		    c.bankid as bankId,
+		    c.bank_name as bank_name,
+		    c.sla_threshold as sla_threshold,
+		    c.available_ratio_threshold as available_ratio_threshold,
+		    c.important_level as important_level 
+		  from
+		    config c 
+		  order by c.important_level desc 
+		  limit #{start},#{length}) t 
+		where a.bankid = t.bankId 
+		  and a.time > (now() - interval 15 minute) 
+		order by t.important_level desc,
+		  t.bank_name asc,
+		  a.time asc  
 	</select>
 </mapper>

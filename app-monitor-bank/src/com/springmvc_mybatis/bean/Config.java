@@ -19,6 +19,20 @@ public class Config  implements Serializable{
 	private String max_beyond_time;
 	private Integer rstatus;
 	private String mail_to;
+	//是否发送告警邮件
+	private int isSendAlarmMail;
+	//在某个时间段低于阀值number次发邮件告警
+	private int number;
+	//请求数的阀值
+	private int request;
+	//每张sla图形显示几条专线
+	private int item;
+	//每页显示多少图形
+	private int eachPage;
+	//专线重要程度(数值越大越重要)
+	private int importantLevel;
+	//解决方案
+	private String solution;
 	
 	public Config() {
 		super();
@@ -133,6 +147,47 @@ public class Config  implements Serializable{
 		this.rstatus = rstatus;
 	}
 	
+	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getRequest() {
+		return request;
+	}
+
+	public void setRequest(int request) {
+		this.request = request;
+	}
+
+	public int getItem() {
+		return item;
+	}
+
+	public void setItem(int item) {
+		this.item = item;
+	}
+
+	public int getEachPage() {
+		return eachPage;
+	}
+
+	public void setEachPage(int eachPage) {
+		this.eachPage = eachPage;
+	}
+
+	public int getImportantLevel() {
+		return importantLevel;
+	}
+
+	public void setImportantLevel(int importantLevel) {
+		this.importantLevel = importantLevel;
+	}
+
 	@Override
 	public String toString() {
 		return "Config [id=" + id + ", bankid=" + bankid + ", bankname=" + bankname
@@ -140,9 +195,21 @@ public class Config  implements Serializable{
 				+ ", max_beyond_time=" + max_beyond_time +", rstatus=" + rstatus+", mail_to=" + mail_to+"]";
 	}
 
-	
+	public String getSolution() {
+		return solution;
+	}
 
+	public void setSolution(String solution) {
+		this.solution = solution;
+	}
 
+	public int getIsSendAlarmMail() {
+		return isSendAlarmMail;
+	}
+
+	public void setIsSendAlarmMail(int isSendAlarmMail) {
+		this.isSendAlarmMail = isSendAlarmMail;
+	}
 
 
 }

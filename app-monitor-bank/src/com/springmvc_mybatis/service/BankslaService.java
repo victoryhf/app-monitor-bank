@@ -3,10 +3,10 @@ package com.springmvc_mybatis.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -135,7 +135,8 @@ public class BankslaService {
 		
 		Map<String, List<Banksla>> bankInfo = new HashMap<String, List<Banksla>>();
 		for (int i = 0; i < array.size(); i++) {
-			if(Integer.parseInt(array.get(i).getAvailable_ratio()) < Integer.parseInt(array.get(i).getAvailable_ratio_threshold())){
+			if(Integer.parseInt(array.get(i).getAvailable_ratio()) < Integer.parseInt(array.get(i).getAvailable_ratio_threshold()) 
+					&& array.get(i).getIsSendAlarmMail() == 1 && array.get(i).getTotal_req() >= array.get(i).getRequest()){
 				if(bankInfo.containsKey(array.get(i).getBank_name())){
 					bankInfo.get(array.get(i).getBank_name()).add(array.get(i));
 				}else{
@@ -146,13 +147,14 @@ public class BankslaService {
 			}
 		}
 		for (String key : bankInfo.keySet()) {
-			if(bankInfo.get(key).size() >= 4){
+			if(bankInfo.get(key).size() >= bankInfo.get(key).get(0).getNumber()){
 				String mailto = bankInfo.get(key).get(0).getMail_to();
-				String content = key+"在";
-				for (int i = 0; i < bankInfo.get(key).size(); i++) {
-					content += bankInfo.get(key).get(i).getTime() + "的可用率为" + bankInfo.get(key).get(i).getAvailable_ratio() + "%,";
-				}
-				content += "均低于阀值" + bankInfo.get(key).get(0).getAvailable_ratio_threshold() + "%;<br/>";
+				String content = "";
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				content += "告警时间："+sdf.format(new Date())+" "+bankInfo.get(key).get(bankInfo.get(key).size()-1).getTime()+"<br>";
+				content += "告警描述："+key+"可用率"+bankInfo.get(key).get(bankInfo.get(key).size()-1).getAvailable_ratio()+"%<br>";
+				content += "告警条件："+"可用率<"+bankInfo.get(key).get(0).getAvailable_ratio_threshold()+"%,请求数>="+bankInfo.get(key).get(0).getRequest()+"连续"+bankInfo.get(key).get(0).getNumber()+"次满足要求。<br>";
+				content += "解决方案："+bankInfo.get(key).get(0).getSolution();
 				MailUtil mailUtil = new MailUtil("sh-nlb-mhc.99bill.com", "monitor_op@99bill.com",
 			               "monitor_op@99bill.com", "monitor_op@99bill.com", "1qaz@WSX");
 				if(EmptyUtil.isNotEmpty(mailto)){

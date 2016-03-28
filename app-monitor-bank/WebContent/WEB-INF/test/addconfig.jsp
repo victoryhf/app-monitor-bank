@@ -61,7 +61,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <input type="text" name="mail_to"/>
      </td>
     </tr>
-    
+    <tr align="left">
+     <td>
+             是否发送告警邮件：
+      <input type="text" name="isSendAlarmMail"  />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             一段时间内最高低于阀值次数：
+      <input type="text" name="number"  />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             请求数的阀值：
+      <input type="text" name="request"  />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             每张图显示专线条数：
+      <input type="text" name="item"  />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             每页显示图形数：
+      <input type="text" name="eachPage"  />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             重要程度：
+      <input type="text" name="importantLevel"  />
+     </td>
+    </tr>
+    <tr align="left">
+     <td style="line-height: 100px;height: 100px;">
+             解决方案：
+      <textarea name="solution" style="height: 150px;width: 500px;"></textarea>
+     </td>
+    </tr>
     <tr >
      <td>
       <input type="submit" value="保存" />

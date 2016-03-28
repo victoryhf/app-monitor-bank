@@ -35,43 +35,85 @@ pageContext.setAttribute("basePath", basePath);
     <tr align="left">
      <td>
                    银行专线号：
-      <input type="text" name="bankid" value=${config.bankid} />
+      <input type="text" name="bankid" value="${config.bankid}" />
      </td>
     </tr>
     <tr align="left">
      <td>
                  专线名称：
-      <input type="text" name="bankname" value=${config.bankname} />
+      <input type="text" name="bankname" value="${config.bankname}" />
      </td>
     </tr>
     <tr align="left">
      <td>
                  响应SLA阀值：
-      <input type="text" name="sla_threshold" value=${config.sla_threshold} />
+      <input type="text" name="sla_threshold" value="${config.sla_threshold}" />
      </td>
     </tr>
     <tr align="left">
      <td>
                  专线可用率阀值：
-      <input type="text" name="available_ratio_threshold" value=${config.available_ratio_threshold} />
+      <input type="text" name="available_ratio_threshold" value="${config.available_ratio_threshold}" />
      </td>
     </tr>
     <tr align="left">
      <td>
                最大超时时间:
-      <input type="text" name="max_beyond_time" value=${config.max_beyond_time} />
+      <input type="text" name="max_beyond_time" value="${config.max_beyond_time}" />
      </td>
     </tr>
     <tr align="left">
      <td>
               是否读取状态:
-      <input type="text" name="rstatus" value=${config.rstatus} />
+      <input type="text" name="rstatus" value="${config.rstatus}" />
      </td>
     </tr>
     <tr align="left">
      <td>
              告警信息订阅人：
-      <input type="text" name="mail_to" value=${config.mail_to} />
+      <input type="text" name="mail_to" value="${config.mail_to}" />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             是否发送告警邮件：
+      <input type="text" name="isSendAlarmMail" value="${config.isSendAlarmMail}" />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             一段时间内最高低于阀值次数：
+      <input type="text" name="number" value="${config.number}" />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             请求数的阀值：
+      <input type="text" name="request" value="${config.request}" />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             每张图显示专线条数：
+      <input type="text" name="item"  value="${config.item}"/>
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             每页显示图形数：
+      <input type="text" name="eachPage" value="${config.eachPage}" />
+     </td>
+    </tr>
+    <tr align="left">
+     <td>
+             重要程度：
+      <input type="text" name="importantLevel" value="${config.importantLevel}" />
+     </td>
+    </tr>
+    <tr align="left">
+     <td style="line-height: 100px;height: 100px;">
+             解决方案：
+      <textarea name="solution" style="height: 150px;width: 500px;">${config.solution}</textarea>
      </td>
     </tr>
     

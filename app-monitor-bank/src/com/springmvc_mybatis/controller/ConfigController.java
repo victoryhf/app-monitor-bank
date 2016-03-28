@@ -36,16 +36,8 @@ public class ConfigController {
 	
 	//新增配置信息
 	@RequestMapping("/addconfig")
-	public String addConfig(HttpServletRequest request, Model model) {
-		String bankid = request.getParameter("bankid");
-		String bankname = request.getParameter("bankname");
-		String sla_threshold = request.getParameter("sla_threshold");
-		String available_ratio_threshold = request.getParameter("available_ratio_threshold");
-		String max_beyond_time = request.getParameter("max_beyond_time");
-		Integer rstatus = Integer.valueOf(request.getParameter("rstatus"));
-		String mail_to = request.getParameter("mail_to");
-		int config_add = configrmapper.addConfig(bankid, bankname,sla_threshold,available_ratio_threshold,
-				max_beyond_time,rstatus,mail_to);
+	public String addConfig(HttpServletRequest request, Model model,Config config) {
+		int config_add = configrmapper.addConfig(config);
 		
 		if (config_add != 1) {
 			//System.out.println("Error insert!");

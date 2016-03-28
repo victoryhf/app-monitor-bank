@@ -21,6 +21,14 @@ public class Banksla implements Serializable{
 	private String sla_threshold;
 	
 	private String mail_to;
+	
+	private int isSendAlarmMail;
+	
+	private int number;
+
+	private int request;
+	
+	private String solution;
 
 	
 	
@@ -107,6 +115,38 @@ public class Banksla implements Serializable{
 
 	public void setMail_to(String mail_to) {
 		this.mail_to = mail_to;
+	}
+
+	public int getIsSendAlarmMail() {
+		return isSendAlarmMail;
+	}
+
+	public void setIsSendAlarmMail(int isSendAlarmMail) {
+		this.isSendAlarmMail = isSendAlarmMail;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getRequest() {
+		return request;
+	}
+
+	public void setRequest(int request) {
+		this.request = request;
+	}
+
+	public String getSolution() {
+		return solution;
+	}
+
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 	
 	

@@ -16,13 +16,7 @@ public interface ConfigMapper {
 	 */
 	 List<Config> getAllConfigs();
 	 
-	 int addConfig(@Param(value = "bankid") String bankid,
-				@Param(value = "bankname") String bankname,
-				@Param(value = "sla_threshold") String sla_threshold,
-				@Param(value = "available_ratio_threshold") String available_ratio_threshold,
-				@Param(value = "max_beyond_time") String max_beyond_time,
-				@Param(value = "rstatus") Integer rstatus,
-				@Param(value = "mail_to") String mail_to);
+	 int addConfig(Config config);
 	 
 	 
 	 Config getConfigByid(@Param(value = "id") int id);
