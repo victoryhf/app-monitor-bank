@@ -44,7 +44,7 @@ public class ConfigController {
 			return "addconfigfail";
 		} else {
 			//model.addAttribute("config", config_add);
-			return "redirect:/config/configlist.action";
+			return "redirect:configlist.action";
 		}
 		
 	}
@@ -67,7 +67,7 @@ public class ConfigController {
     @RequestMapping("/updateConfigByid")
 	public String updateConfigByid(Config config) {
 		configrmapper.updateConfigByid(config);
-		return "redirect:/config/configlist.action";
+		return "redirect:configlist.action";
 	}
     
    
@@ -77,7 +77,7 @@ public class ConfigController {
 	public String delConfig(Config config) {
 		configrmapper.deleteConfig(config);
 		//System.out.println(config);
-		return "redirect:/config/configlist.action";
+		return "redirect:configlist.action";
 	}
     
 
