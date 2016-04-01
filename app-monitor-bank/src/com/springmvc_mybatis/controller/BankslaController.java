@@ -108,7 +108,6 @@ public class BankslaController {
 	 */
 	@RequestMapping("/getAllratio")
 	public String getAllbanksla(HttpServletRequest request,HttpServletResponse response, Model model){
-		
 		bankslaService.getAllbanksla(request, response, model);
 		return "ratio";
 		

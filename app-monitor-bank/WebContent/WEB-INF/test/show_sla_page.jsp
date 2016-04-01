@@ -169,7 +169,7 @@
 						for (var j = 0; j < map[key].length; j++) {
 							if(parseInt(map[key][j]) >= parseInt(slaThresholdMap[key])){
 								if(typeof(xTimeArr[j]) != "undefined"){
-									var mpd = {name : '告警点', value : map[key][j], xAxis: xTimeArr[j], yAxis: map[key][j]};
+									var mpd = {name : '告警点', value : '', xAxis: xTimeArr[j], yAxis: map[key][j],symbolSize : 4};
 									markPointDate.push(mpd);
 								}
 								
