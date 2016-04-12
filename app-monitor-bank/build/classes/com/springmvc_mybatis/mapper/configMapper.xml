@@ -9,7 +9,12 @@
 		<result column="available_ratio_threshold" property="available_ratio_threshold" />
 		<result column="max_beyond_time" property="max_beyond_time" />
 		<result column="rstatus" property="rstatus" />
-		<result column="mail_to" property="mail_to" />
+		<result column="number" property="number" />
+		<result column="request" property="request" />
+		<result column="item" property="item" />
+		<result column="each_page" property="eachPage" />
+		<result column="important_level" property="importantLevel" />
+		<result column="solution" property="solution" />
 	</resultMap>
 	
 	<!--查询所有配置信息 -->
@@ -30,13 +35,16 @@
     <update id="updateConfigByid" parameterType="Config">
         update config set bankid=#{bankid},bank_name=#{bankname},
          sla_threshold=#{sla_threshold},available_ratio_threshold=#{available_ratio_threshold},
-         max_beyond_time=#{max_beyond_time},rstatus=#{rstatus},mail_to=#{mail_to} where id=#{id}
+         max_beyond_time=#{max_beyond_time},rstatus=#{rstatus},mail_to=#{mail_to},number=#{number},
+         request=#{request},item=#{item},each_page=#{eachPage},important_level=#{importantLevel},
+         solution=#{solution},is_send_alarm_mail=#{isSendAlarmMail} 
+         where id=#{id}
     </update>
 	
 	<!--新增配置信息 -->
 	<insert id="addConfig"  parameterType="Config">
-         insert into config(bankid,bank_name,sla_threshold,available_ratio_threshold,max_beyond_time,rstatus,mail_to) 
-         values(#{bankid},#{bankname},#{sla_threshold},#{available_ratio_threshold},#{max_beyond_time},#{rstatus},#{mail_to})
+         insert into config(bankid,bank_name,sla_threshold,available_ratio_threshold,max_beyond_time,rstatus,mail_to,number,request,item,each_page,important_level,solution,is_send_alarm_mail) 
+         values(#{bankid},#{bankname},#{sla_threshold},#{available_ratio_threshold},#{max_beyond_time},#{rstatus},#{mail_to},#{number},#{request},#{item},#{eachPage},#{importantLevel},#{solution},#{isSendAlarmMail})
     </insert>
     
     <!--删除一条配置-->
