@@ -19,4 +19,12 @@ public class EmptyUtil {
 	public static boolean isNotEmpty(Date value){
 		return !(value == null);
 	}
+	
+	public static boolean isNotEmpty(Object value){
+		return !(value == null);
+	}
+	
+	public static boolean isEmpty(Object value){
+		return value == null;
+	}
 }

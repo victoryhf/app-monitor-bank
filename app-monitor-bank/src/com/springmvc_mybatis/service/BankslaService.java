@@ -20,13 +20,17 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springmvc_mybatis.bean.AlarmInfo;
 import com.springmvc_mybatis.bean.Banksla;
+import com.springmvc_mybatis.bean.PageShowConfig;
 import com.springmvc_mybatis.mailsend.MailUtil;
 import com.springmvc_mybatis.mapper.AlarmInfoMapper;
 import com.springmvc_mybatis.mapper.BankslaMapper;
 import com.springmvc_mybatis.mapper.ConfigMapper;
+import com.springmvc_mybatis.mapper.PageShowConfigMapper;
+import com.springmvc_mybatis.tools.CheckException;
 import com.springmvc_mybatis.tools.EmptyUtil;
 import com.springmvc_mybatis.tools.GlobalVariable;
 
@@ -41,6 +45,9 @@ public class BankslaService {
 	
 	@Autowired
 	private AlarmInfoMapper alarmInfoMapper;
+	
+	@Autowired
+	private PageShowConfigMapper pageShowConfigMapper;
 	
 	/**
 	 * 获取所有banksla
@@ -89,38 +96,46 @@ public class BankslaService {
 	 * @param request
 	 * @param response
 	 * @param model
+	 * @throws CheckException 
 	 */
 	public void getBankslaPage(HttpServletRequest request,HttpServletResponse response, Model model){
-		//获取当前页数和每页显示条数
-		int curPage=Integer.parseInt(request.getParameter("curPage"));
-		int pageSize=Integer.parseInt(request.getParameter("pageSize"));
-		
-		//计算查询起始位置
-		int start = (curPage-1)*pageSize;
-		List<Banksla> array = bankslamapper.getBankslaPage(start,pageSize);
-		
-		//计算总条数和总页数
-		int count = configrmapper.getAllConfigCount();
-		int countPage = (int) Math.ceil((double)count/(double)pageSize);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("bankslaPage", array);
-		map.put("curPage", curPage);
-		map.put("countPage", countPage);
-		response.setContentType("text/html; charset=utf-8");
-		JSONObject json = JSONObject.fromObject(map);
-		System.out.println(json.toString());
-		
-		PrintWriter out;
-		try {
+		try {//获取当前页数和每页显示条数
+			int curPage = Integer.parseInt(request.getParameter("curPage"));
 			
+			PageShowConfig pageShowConfig = new PageShowConfig();
+			pageShowConfig.setPageName("show_sla_page");
+			pageShowConfig = pageShowConfigMapper.findPageShowConfig(pageShowConfig);
+			if(EmptyUtil.isEmpty(pageShowConfig.getPerChartNumber()) || EmptyUtil.isEmpty(pageShowConfig.getPerPageNumber())){
+				throw new CheckException("请配置该页面显示信息！");
+			}
+			int pageSize = pageShowConfig.getPerChartNumber() * pageShowConfig.getPerPageNumber();
+			
+			//计算查询起始位置
+			int start = (curPage-1)*pageSize;
+			List<Banksla> array = bankslamapper.getBankslaPage(start,pageSize);
+			
+			//计算总条数和总页数
+			int count = configrmapper.getAllConfigCount();
+			int countPage = (int) Math.ceil((double)count/(double)pageSize);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("bankslaPage", array);
+			map.put("curPage", curPage);
+			map.put("countPage", countPage);
+			map.put("perChartNumber", pageShowConfig.getPerChartNumber());
+			map.put("perPageNumber", pageShowConfig.getPerPageNumber());
+			response.setContentType("text/html; charset=utf-8");
+			JSONObject json = JSONObject.fromObject(map);
+			System.out.println(json.toString());
+			PrintWriter out;
 			out = response.getWriter();
 	        out.println(json);  
 	        out.flush();  
 	        out.close();  
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (CheckException e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

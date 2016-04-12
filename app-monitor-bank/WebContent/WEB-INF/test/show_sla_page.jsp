@@ -83,7 +83,6 @@
 
 <script type="text/javascript">
     var curPage = 1;
-    var pageSize = 18;
     var countPage = 1;
     $(function(){
     	loadCharts(curPage);
@@ -111,8 +110,7 @@
 			async:false,//设置为同步请求
 			url:"banksla/getBankslaPage.action",//请求地址
 			data:{
-				curPage : curPage,
-				pageSize : pageSize
+				curPage : curPage
 			},//请求数据类型 
 			dataType:"json",//请求返回的数据类型
 			success:function(result){//请求成功后回调函数
@@ -121,6 +119,8 @@
 					curPage = result.curPage;
 					countPage = result.countPage;
 					createPagination();
+					var perChartNumber = parseInt(result.perChartNumber);
+					var perPageNumber = parseInt(result.perPageNumber);
 					
 					var bankslaPage = result.bankslaPage;
 					var leg = new Array();
@@ -149,14 +149,12 @@
 						map[bankslaPage[i].bank_name] = a;
 					}
 					var listHtml = "";
-					var k = 1;
-					for (var key in map) {
-						if(k % 2 == 0){
-							listHtml += "<div class=\"list\" id=\"list"+k/2+"\"></div>";
+					for (var k=1; k < parseInt(map.length+1); k++) {
+						if(k % perChartNumber == 0){
+							listHtml += "<div class=\"list\" id=\"list"+k/perChartNumber+"\"></div>";
 						}else if(k == map.length){
-							listHtml += "<div class=\"list\" id=\"list"+(k+1)/2+"\"></div>";
+							listHtml += "<div class=\"list\" id=\"list"+(k/perChartNumber+1)+"\"></div>";
 						}
-						k++;
 					}
 					$("#main").html(listHtml);
 					var index = 1;
@@ -195,15 +193,18 @@
 						seriesArr[seriesArr.length] = seriesData;
 						
 						leg[leg.length] = legName;
-						if(index % 2 == 0){
-							drawratio(ec,leg,xTimeArr,seriesArr,index/2);
+						if(index % perChartNumber == 0){
+							drawratio(ec,leg,xTimeArr,seriesArr,index/perChartNumber);
 							seriesArr = new Array();
 							leg = new Array();
 						}else if(index == map.length){
-							drawratio(ec,leg,xTimeArr,seriesArr,(index+1)/2);
+							drawratio(ec,leg,xTimeArr,seriesArr,(index/perChartNumber)+1);
 							seriesArr = new Array();
 							leg = new Array();
 						}
+						/* drawratio(ec,leg,xTimeArr,seriesArr,index);
+						seriesArr = new Array();
+						leg = new Array(); */
 						index++;
 					}
 				} 

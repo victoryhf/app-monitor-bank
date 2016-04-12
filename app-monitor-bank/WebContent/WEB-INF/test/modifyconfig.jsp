@@ -94,18 +94,6 @@ pageContext.setAttribute("basePath", basePath);
     </tr>
     <tr align="left">
      <td>
-             每张图显示专线条数：
-      <input type="text" name="item"  value="${config.item}"/>
-     </td>
-    </tr>
-    <tr align="left">
-     <td>
-             每页显示图形数：
-      <input type="text" name="eachPage" value="${config.eachPage}" />
-     </td>
-    </tr>
-    <tr align="left">
-     <td>
              重要程度：
       <input type="text" name="importantLevel" value="${config.importantLevel}" />
      </td>

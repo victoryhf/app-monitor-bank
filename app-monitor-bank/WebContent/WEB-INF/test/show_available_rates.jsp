@@ -72,7 +72,6 @@
 		//使用Jquery-Ajax获取所需数据
 		$.ajax({
 			type:'post',//请求方式 
-			async:false,//设置为同步请求
 			url:"banksla/getAllratio.action",//请求地址
 			data:{},//请求数据类型 
 			dataType:"json",//请求返回的数据类型
@@ -157,8 +156,8 @@
 		myChart = ec.init(document.getElementById('ratesDiv'));
 		var option={
 				title:{//标题
-					text:'专线可用率',//主标题文本
-					x:'center',//水平安放位置
+					text:'银行专线可用率曲线图',//主标题文本
+					x:500,//水平安放位置
 					y:'top',//垂直安放位置
 					padding:8,//标题内边距
 					textStyle:{//文字样式
