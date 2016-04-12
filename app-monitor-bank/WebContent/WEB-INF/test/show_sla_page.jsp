@@ -107,7 +107,6 @@
 		//使用Jquery-Ajax获取所需数据
 		$.ajax({
 			type:'post',//请求方式 
-			async:false,//设置为同步请求
 			url:"banksla/getBankslaPage.action",//请求地址
 			data:{
 				curPage : curPage
