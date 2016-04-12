@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc_mybatis.mapper.PageShowConfigMapper">
+	<resultMap type="pageShowConfig" id="pageShowConfig">
+		<result column="page_config_id" property="pageConfigId" />
+		<result column="page_name" property="pageName" />
+		<result column="per_page_number" property="perPageNumber" />
+		<result column="per_chart_number" property="perChartNumber" />
+	</resultMap>
+	
+	<select id="findPageShowConfigs" resultMap="pageShowConfig" >
+		select 
+		  * 
+		from
+		  page_show_config p 
+		where 1=1
+		<if test="pageConfigId != null">
+			and p.page_config_id = #{pageConfigId}
+		</if>
+		<if test="pageName != null">
+			and p.page_name = #{pageName}
+		</if>
+		<if test="perChartNumber != null">
+			and p.per_chart_number = #{perChartNumber}
+		</if>
+		<if test="perPageNumber != null">
+			and p.per_page_number = #{perPageNumber}
+		</if>
+	</select>
+	
+	<select id="findPageShowConfig" resultMap="pageShowConfig" >
+		select 
+		  * 
+		from
+		  page_show_config p 
+		where 1=1
+		<if test="pageConfigId != null">
+			and p.page_config_id = #{pageConfigId}
+		</if>
+		<if test="pageName != null">
+			and p.page_name = #{pageName}
+		</if>
+		<if test="perChartNumber != null">
+			and p.per_chart_number = #{perChartNumber}
+		</if>
+		<if test="perPageNumber != null">
+			and p.per_page_number = #{perPageNumber}
+		</if>
+	</select>
+	
+	<insert id="addPageShowConfig"  parameterType="PageShowConfig" useGeneratedKeys="true" keyProperty="pageConfigId">
+         insert into page_show_config (
+			per_page_number,
+			per_chart_number,
+			page_name
+		 ) values(
+		    #{perPageNumber},
+		    #{perChartNumber},
+		    #{pageName}
+		 )
+    </insert>
+    
+    <update id="updatePageShowConfig"  parameterType="PageShowConfig" >
+    	update 
+		  page_show_config 
+		set
+		  per_page_number = #{perPageNumber},
+		  per_chart_number = #{perChartNumber},
+		  page_name = #{pageName} 
+		where page_config_id = #{pageConfigId}
+    </update>
+    
+    <select id="findAllPageShowConfigs" resultMap="pageShowConfig" >
+		select * from page_show_config
+	</select>
+	
+	<delete id="deletePageShowConfig" parameterType="PageShowConfig">
+  		delete from page_show_config where page_config_id = #{pageConfigId}
+	</delete>
+</mapper>
