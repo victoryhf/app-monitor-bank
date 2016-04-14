@@ -17,10 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springmvc_mybatis.bean.AlarmInfo;
 import com.springmvc_mybatis.bean.Banksla;
@@ -36,6 +37,8 @@ import com.springmvc_mybatis.tools.GlobalVariable;
 
 @Service("bankslaService")
 public class BankslaService {
+	
+	private final Log logger = LogFactory.getLog(BankslaService.class);
 	
 	@Autowired
 	private BankslaMapper bankslamapper;

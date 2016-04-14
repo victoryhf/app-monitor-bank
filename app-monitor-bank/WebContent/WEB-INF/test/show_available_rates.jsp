@@ -32,6 +32,8 @@
 <!--引入bootstrap-3.3.5-dist/css/docs.css文档的外部样式表-->
 <link href="./bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
 <link href="./css/top.css" rel="stylesheet">
+<link href="css/dialog.css" rel="stylesheet">
+<script src="js/dialog.js"></script>
 </head>
 <body>
 
@@ -143,14 +145,13 @@
 				
 			},
 			error:function(errorMsg){//请求失败后回调函数
-				alert("数据加载出错");
+				showPrompt("数据加载出错！",50000);
 			    //设置ECharts过渡控制
 				myChart.hideLoading();
 			},
 		});
 		
 	}
-	
 	function drawratio(ec,leg,xTimeArr,seriesArr){
 		// 基于准备好的容器,初始化echarts图表
 		myChart = ec.init(document.getElementById('ratesDiv'));

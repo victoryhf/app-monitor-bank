@@ -30,6 +30,8 @@
 <!--引入bootstrap-3.3.5-dist/css/docs.css文档的外部样式表-->
 <link href="./bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
 <link href="./css/top.css" rel="stylesheet">
+<link href="css/dialog.css" rel="stylesheet">
+<script src="js/dialog.js"></script>
 <style type="text/css">
 	#main{
 		width: 100%;
@@ -210,7 +212,7 @@
 				
 			},
 			error:function(errorMsg){//请求失败后回调函数
-				alert("数据加载出错");
+				showPrompt("数据加载出错！",50000);
 			    //设置ECharts过渡控制
 				myChart.hideLoading();
 			},

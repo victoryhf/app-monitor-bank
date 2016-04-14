@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import com.springmvc_mybatis.bean.Config;
 import com.springmvc_mybatis.mapper.BankslaMapper;
 import com.springmvc_mybatis.mapper.ConfigMapper;
 import com.springmvc_mybatis.service.BankslaService;
+import com.springmvc_mybatis.tools.CheckException;
 
 
 
@@ -122,6 +124,7 @@ public class BankslaController {
 	 * @param model
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	@RequestMapping("/getBankslaPage")
 	public String getBankslaPage(HttpServletRequest request,HttpServletResponse response, Model model){
 		
