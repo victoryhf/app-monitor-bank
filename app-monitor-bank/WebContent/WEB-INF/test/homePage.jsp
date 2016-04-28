@@ -81,6 +81,7 @@
 		<div class="user_div">
 			<span>当前用户：${sessionScope.user.userName}</span>
 			<span>角色：${sessionScope.user.role.roleName}</span>
+			<span><a href="javascript:void(0);" onclick="logout()">退出系统</a></span>
 		</div>
 	</div>
 	<iframe id="ifra" style="width: 100%;height: 900px;border: none;" scrolling="auto" 
@@ -96,3 +97,27 @@
 	></iframe>
 </body>
 </html>
+<script type="text/javascript">
+function logout(){
+	$.ajax({
+		type:'post',//请求方式 
+		url:"user/logout.action",//请求地址
+		data:{
+		},//请求数据类型 
+		dataType:"json",//请求返回的数据类型
+		success:function(result){//请求成功后回调函数
+			if(result){
+				if(result.success == 1){
+					location.href="login.jsp";
+				}else{
+					alert(result.msg);
+				}
+			}
+		},
+		error:function(errorMsg){//请求失败后回调函数
+			alert("数据加载出错");
+		},
+	});
+	
+}
+</script>

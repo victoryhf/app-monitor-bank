@@ -11,6 +11,8 @@ public class Permission implements Serializable{
 	private String permissionName;
 	
 	private Integer permissionValue;
+	
+	private String permissionUrl;
 
 	public Integer getPermissionId() {
 		return permissionId;
@@ -34,6 +36,14 @@ public class Permission implements Serializable{
 
 	public void setPermissionValue(Integer permissionValue) {
 		this.permissionValue = permissionValue;
+	}
+
+	public String getPermissionUrl() {
+		return permissionUrl;
+	}
+
+	public void setPermissionUrl(String permissionUrl) {
+		this.permissionUrl = permissionUrl;
 	}
 	
 	

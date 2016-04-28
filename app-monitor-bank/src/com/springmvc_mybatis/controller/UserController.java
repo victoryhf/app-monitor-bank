@@ -61,6 +61,18 @@ public class UserController {
 		}
 		
 	}
+	
+	@RequestMapping("/logout")
+	public void logout(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.getSession().removeAttribute("user");
+			new ResponseJsonResult(1, null, null, response);
+		} catch (Exception e) {
+			logger.warn(e.getStackTrace());
+			new ResponseJsonResult(0, null, null, response);
+		}
+		
+	}
 
 	/**
 	 * 查询所有用户

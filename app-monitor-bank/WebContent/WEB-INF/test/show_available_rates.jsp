@@ -118,7 +118,10 @@
 				
 			},
 			error:function(errorMsg){//请求失败后回调函数
-				showPrompt("数据加载出错！",5000);
+				setTimeout(function(){
+					require(['echarts','echarts/chart/line'],drawEcharts);
+				}, 5000);
+				showPrompt("数据加载出错！",3000);
 			},
 		});
 		

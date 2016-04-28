@@ -5,6 +5,7 @@
 		<result column="permission_id" property="permissionId" />
 		<result column="permission_name" property="permissionName" />
 		<result column="permission_value" property="permissionValue" />
+		<result column="permission_url" property="permissionUrl" />
 	</resultMap>
 	<select id="findBycolumns" resultMap="permission">
 		select * from permission where 1=1
@@ -13,6 +14,9 @@
 		</if>
 		<if test="permissionValue != null">
 			and permission_value=#{permissionValue}
+		</if>
+		<if test="permissionUrl != null">
+			and permission_url=#{permissionUrl}
 		</if>
 	</select>
 	
@@ -23,6 +27,9 @@
 		</if>
 		<if test="permissionValue != null">
 			and permission_value=#{permissionValue}
+		</if>
+		<if test="permissionUrl != null">
+			and permission_url=#{permissionUrl}
 		</if>
 	</select>
 	

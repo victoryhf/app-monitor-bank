@@ -143,7 +143,10 @@
 				
 			},
 			error:function(errorMsg){//请求失败后回调函数
-				showPrompt("数据加载出错！",50000);
+				setTimeout(function(){
+					loadCharts(curPag);
+				}, 5000);
+				showPrompt("数据加载出错！",3000);
 			},
 		});
 		

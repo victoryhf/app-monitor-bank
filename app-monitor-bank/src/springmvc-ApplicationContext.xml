@@ -51,5 +51,6 @@
 	
 	<!-- 6. 应用启动时调用init方法，获得config表配置 -->
 	<bean id="cfg" class="com.springmvc_mybatis.bean.AutoLoadCfg" init-method="init"></bean>
-	
+	<bean id="permissionService" class="com.springmvc_mybatis.service.PermissionService">
+	</bean>
 </beans>
