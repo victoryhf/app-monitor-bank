@@ -19,7 +19,7 @@ pageContext.setAttribute("basePath", basePath);
 <c:if test="${success == 1}">
     <a href="../addPageShowConfig.jsp">增加页面显示配置</a>
 	<c:if test="${!(empty pageShowConfigList)}">
-		<table border="1" cellpadding="10" cellspacing="0">
+		<table class="table table-striped">
 			<tr>
 				<th>配置的页面名称</th>
 				<th>每页显示图型的数量</th>
@@ -46,6 +46,14 @@ pageContext.setAttribute("basePath", basePath);
 </body>
 </html>
 <script src="../jquery-1.9.1/jquery.min.js"></script>
+<!--引入 Bootstrap核心 文件 -->
+<script src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<!--引入bootstrap.min.css文档的外部样式表-->
+<link href="../bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<!--引入bootstrap-responsive.min.css文档的外部样式表 -->
+<link href="../bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--引入bootstrap-3.3.5-dist/css/docs.css文档的外部样式表-->
+<link href="../bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
 <script type="text/javascript">
 function deleteageShowConfig(pageConfigId){
 	$.ajax({

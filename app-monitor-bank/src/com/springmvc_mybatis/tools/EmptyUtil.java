@@ -1,6 +1,7 @@
 package com.springmvc_mybatis.tools;
 
 import java.util.Date;
+import java.util.List;
 
 public class EmptyUtil {
 	
@@ -26,5 +27,15 @@ public class EmptyUtil {
 	
 	public static boolean isEmpty(Object value){
 		return value == null;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static boolean isNotEmpty(List value){
+		return value != null && value.size() > 0;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static boolean isEmpty(List value){
+		return value == null || value.size()==0;
 	}
 }

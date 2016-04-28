@@ -1,0 +1,88 @@
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.head_div{
+	width: 100%;
+	height: 54px;
+	border-bottom: 5px solid #8ec4fa;
+}
+
+.logo_div{
+	height: 54px;
+	width: 100px;
+	background-image: url("../images/logo.gif");
+	margin-left: 10px;
+	float: left;
+}
+
+.title_div{
+	height: 54px;
+	width: 280px;
+	background-image: url("../images/systitle.png");
+	background-repeat:no-repeat;
+	background-position:center;
+	margin-left: 10px;
+	float: left;
+}
+
+.menus_div{
+	height: 44px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 60px;
+	color: #4f4f4f;
+	font-size: 16px;
+	letter-spacing: 2px;
+}
+
+.menu_div{
+	height:44px;
+	line-height: 44px;
+	vertical-align: middle;
+	cursor: pointer;
+	display: inline-block;
+	z-index: 99;
+	position: absolute;	
+}
+
+.menu_div ul{
+	list-style: none;
+	float: left;
+}
+
+.menu_div ul li{
+	list-style: none;
+	background-color: white;
+	padding-left:10px;
+	padding-right:10px;
+	background-color: #8ec4fa;
+	text-align: center;
+	
+}
+
+
+.menu_div ul li:hover{
+	background:#acd6ff;
+} 
+
+.user_div{
+	right:10px;
+	font-size: 14px;
+	margin-top: 10px;
+	position: absolute;
+}
+.user_div span{
+	margin-right: 10px;
+}
+
+.edit_password{
+	cursor: pointer;
+} 
+
+.edit_password:hover{
+	background:#acd6ff;
+} 
+

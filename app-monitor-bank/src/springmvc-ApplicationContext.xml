@@ -14,12 +14,12 @@
 	<!-- 1. 数据源 : DriverManagerDataSource -->
 <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://172.21.195.213:3306/monitor"/>
+		<!-- <property name="url" value="jdbc:mysql://172.21.195.213:3306/monitor"/>
 		<property name="username" value="tab"/>
-		<property name="password" value="p@ssw0rd"/>
-		<!-- <property name="url" value="jdbc:mysql://192.168.165.71:3306/monitor"/>
+		<property name="password" value="p@ssw0rd"/> -->
+		<property name="url" value="jdbc:mysql://192.168.165.71:3306/monitor"/>
 		<property name="username" value="root"/>
-		<property name="password" value="123456"/> -->
+		<property name="password" value="123456"/>
 </bean>
 	
 	<!-- 
@@ -51,4 +51,5 @@
 	
 	<!-- 6. 应用启动时调用init方法，获得config表配置 -->
 	<bean id="cfg" class="com.springmvc_mybatis.bean.AutoLoadCfg" init-method="init"></bean>
+	
 </beans>

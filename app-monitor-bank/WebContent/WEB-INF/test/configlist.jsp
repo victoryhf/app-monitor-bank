@@ -19,7 +19,7 @@ pageContext.setAttribute("basePath", basePath);
 <body>
     <a href="../addconfig.jsp">增加配置</a>
 	<c:if test="${!(empty requestScope.configs)}">
-		<table border="1" cellpadding="10" cellspacing="0">
+		<table class="table table-striped">
 			<tr>
 				<th>id</th>
 				<th>银行专线号</th>
@@ -54,3 +54,11 @@ pageContext.setAttribute("basePath", basePath);
 	
 </body>
 </html>
+<!--引入 Bootstrap核心 文件 -->
+<script src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<!--引入bootstrap.min.css文档的外部样式表-->
+<link href="../bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<!--引入bootstrap-responsive.min.css文档的外部样式表 -->
+<link href="../bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--引入bootstrap-3.3.5-dist/css/docs.css文档的外部样式表-->
+<link href="../bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">

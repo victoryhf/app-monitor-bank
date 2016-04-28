@@ -2,22 +2,87 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springmvc_mybatis.mapper.UserMapper">
 	<resultMap type="User" id="userResult">
-		<result column="id" property="id" />
-		<result column="name" property="name" />
-		<result column="pwd" property="password" />
-		<result column="create_time" property="time" />
+		<result column="user_id" property="userId" />
+		<result column="user_name" property="userName" />
+		<result column="pass_word" property="password" />
+		<result column="role_id" property="roleId" />
+		<association property="role" column="role_id" javaType="com.springmvc_mybatis.bean.Role" select="com.springmvc_mybatis.mapper.RoleMapper.findById">
+    	</association>
 	</resultMap>
 	<select id="login" resultMap="userResult">
 		select * from
 		user
 		where
-		name=#{name}
-		and pwd=#{password}
+		user_name=#{userName}
+		and pass_word=#{password}
 	</select>
 
 	<select id="getAllUsers" resultMap="userResult">
 		select *
 		from user
 	</select>
+	<insert id="addUser"  parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+         insert into user (
+		  user_name,
+		  pass_word,
+		  role_id
+		) 
+		values
+		(
+		    '${userName}',
+		    '${password}',
+		    '${roleId}'
+		)
+    </insert>
+    
+    <select id="findByColumns" resultMap="userResult">
+		select * from user where 1=1
+		<if test="userId != null">
+			and user_id = #{userId}
+		</if>
+		<if test="userName != null">
+			and user_name = #{userName}
+		</if>
+		<if test="password != null">
+			and pass_word = #{password}
+		</if>
+		<if test="roleId != null">
+			and role_id = #{roleId}
+		</if>
+	</select>
+	
+	<select id="findAllByColumns" resultMap="userResult">
+		select * from user where 1=1
+		<if test="userId != null">
+			and user_id = #{userId}
+		</if>
+		<if test="userName != null">
+			and user_name = #{userName}
+		</if>
+		<if test="password != null">
+			and pass_word = #{password}
+		</if>
+		<if test="roleId != null">
+			and role_id = #{roleId}
+		</if>
+	</select>
+	
+	<delete id="deleteUser" parameterType="Integer">
+  		delete from user where user_id = #{userId}
+	</delete>
+	
+	<update id="updateUser"  parameterType="User" >
+    	update user set
+		  user_name = '${userName}',
+		  role_id = '${roleId}' 
+		where user_id = '${userId}'
+    </update>
+	
+	<update id="updatePassword" >
+    	update user set pass_word = '${password}' where user_id = '${userId}'
+    </update>
+    
+    <select id="findById" resultMap="userResult">
+		select * from user where user_id = '${userId}'
+	</select>
 </mapper>
-<!-- error ,,,,resultMap wrong to resultType... -->

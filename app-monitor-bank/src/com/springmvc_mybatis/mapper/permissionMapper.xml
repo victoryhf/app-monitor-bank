@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc_mybatis.mapper.PermissionMapper">
+	<resultMap type="Permission" id="permission">
+		<result column="permission_id" property="permissionId" />
+		<result column="permission_name" property="permissionName" />
+		<result column="permission_value" property="permissionValue" />
+	</resultMap>
+	<select id="findBycolumns" resultMap="permission">
+		select * from permission where 1=1
+		<if test="permissionName != null">
+			and permission_name=#{permissionName}
+		</if>
+		<if test="permissionValue != null">
+			and permission_value=#{permissionValue}
+		</if>
+	</select>
+	
+	<select id="findListBycolumns" resultMap="permission">
+		select * from permission where 1=1
+		<if test="permissionName != null">
+			and permission_name=#{permissionName}
+		</if>
+		<if test="permissionValue != null">
+			and permission_value=#{permissionValue}
+		</if>
+	</select>
+	
+	<select id="findAll" resultMap="permission">
+		select * from permission order by permission_value asc;
+	</select>
+	
+	<select id="findAllLimitRole" resultMap="permission" parameterType="Integer">
+		select * from permission where permission_value &lt;= #{rolePerValue}
+	</select>
+</mapper>

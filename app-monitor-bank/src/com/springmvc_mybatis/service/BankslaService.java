@@ -60,7 +60,7 @@ public class BankslaService {
 	 * @param response
 	 * @param model
 	 */
-	public void getAllbanksla(HttpServletRequest request,HttpServletResponse response, Model model){
+	public void getAllbanksla(HttpServletRequest request,HttpServletResponse response){
 		List<Banksla> array = bankslamapper.getAllbankslas();
 		Date lastTime = GlobalVariable.G_LAST_TIME_AVAILABLE_RATIO;
 		if(EmptyUtil.isNotEmpty(lastTime)){
@@ -76,7 +76,6 @@ public class BankslaService {
 		}
 		response.setContentType("text/html; charset=utf-8");
 		JSONArray json = JSONArray.fromObject(array);
-		//System.out.println(json.toString());
 		
 		PrintWriter out;
 		try {
@@ -85,7 +84,6 @@ public class BankslaService {
 	        out.println(json);  
 	        out.flush();  
 	        out.close();  
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,7 +126,6 @@ public class BankslaService {
 			map.put("perPageNumber", pageShowConfig.getPerPageNumber());
 			response.setContentType("text/html; charset=utf-8");
 			JSONObject json = JSONObject.fromObject(map);
-			System.out.println(json.toString());
 			PrintWriter out;
 			out = response.getWriter();
 	        out.println(json);  
@@ -185,10 +182,13 @@ public class BankslaService {
 						mailUtil.send(tos, true, subject, content, true, null);
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.error(e);
 					} catch (MessagingException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.error(e);
+					}catch (Exception e) {
+						// TODO Auto-generated catch block
+						logger.error(e);
 					}
 				}
 			}

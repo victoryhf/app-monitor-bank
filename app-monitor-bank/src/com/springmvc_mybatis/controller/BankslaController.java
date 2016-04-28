@@ -3,6 +3,7 @@ package com.springmvc_mybatis.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +52,6 @@ public class BankslaController {
 		List<Config> list=configrmapper.gettbankid();
 		response.setContentType("text/html; charset=utf-8");
 		JSONArray json=JSONArray.fromObject(list);
-		System.out.println(json.toString());
 		
 		PrintWriter out;
 		try {
@@ -79,7 +79,6 @@ public class BankslaController {
 		List<Banksla> array = bankslamapper.getAllbanksla(bankid);
 		response.setContentType("text/html; charset=utf-8");
 		JSONArray json=JSONArray.fromObject(array);
-		System.out.println(json.toString());
 		
 		PrintWriter out;
 		try {
@@ -109,9 +108,8 @@ public class BankslaController {
 	 * @return
 	 */
 	@RequestMapping("/getAllratio")
-	public String getAllbanksla(HttpServletRequest request,HttpServletResponse response, Model model){
-		bankslaService.getAllbanksla(request, response, model);
-		return "ratio";
+	public void getAllbanksla(HttpServletRequest request,HttpServletResponse response){
+		bankslaService.getAllbanksla(request, response);
 		
 	}
 	
@@ -157,7 +155,6 @@ public class BankslaController {
 		//System.out.println(banksla.getBankid()+"aaaaaaa");
 		response.setContentType("text/html; charset=utf-8");
 		JSONArray json=JSONArray.fromObject(array);
-		System.out.println(json.toString());
 		
 		
 		PrintWriter out;

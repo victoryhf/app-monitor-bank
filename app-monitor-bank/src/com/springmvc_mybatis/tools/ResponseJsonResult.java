@@ -21,11 +21,21 @@ public class ResponseJsonResult {
 	public ResponseJsonResult() {
 	}
 	
+	public ResponseJsonResult(int success) {
+		this.success = success;
+	}
+	
+	public ResponseJsonResult(int success, String msg) {
+		this.success = success;
+		this.msg = msg;
+	}
+	
 	public ResponseJsonResult(int success, String msg, Object obj) {
 		this.success = success;
 		this.msg = msg;
 		this.obj = obj;
 	}
+	
 	
 	public ResponseJsonResult(int success, String msg, Object obj,HttpServletResponse responsep) {
 		this.success = success;

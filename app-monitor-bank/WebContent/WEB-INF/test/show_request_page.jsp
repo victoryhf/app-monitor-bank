@@ -1,34 +1,13 @@
-<%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!--获取Path路径-->    
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
- 
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@include file="/WEB-INF/test/base.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>银行SLA监控系统</title>
 
 <!-- ECharts单文件引入-->
 <script src="./build/dist/echarts.js"></script>
-<!--引入Jquery核心文件-->
-<script src="./jquery-1.9.1/jquery.min.js"></script>
-<!--引入 Bootstrap核心 文件 -->
-<script src="./bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-<!--引入bootstrap.min.css文档的外部样式表-->
-<link href="./bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
-<!--引入bootstrap-responsive.min.css文档的外部样式表 -->
-<link href="./bootstrap-3.3.5-dist/css/bootstrap-responsive.min.css" rel="stylesheet">
-<!--引入bootstrap-3.3.5-dist/css/docs.css文档的外部样式表-->
-<link href="./bootstrap-3.3.5-dist/css/docs.css" rel="stylesheet">
 <link href="./css/top.css" rel="stylesheet">
 <link href="css/dialog.css" rel="stylesheet">
 <script src="js/dialog.js"></script>
@@ -39,7 +18,7 @@
 	}
 	.list{
 		width: 33.33%;
-		height: 300px;
+		height: 230px;
 		display: inline-block;
 	}
 	#pageContain{
@@ -54,22 +33,12 @@
 	}
 	
 	#title p{
-		font-size: 28px;
+		font-size: 20px;
 	}
 </style>
 </head>
 <body>
 
-<!--设置页面top并引入指定的Css样式-->
-<div id="topMain">
-	<div id="topContainer">
-		<div id="top">
-			<img src="https://sars.99bill.net/sor/app-monitor-bank/images/logo.gif" alt="foot step" width="79" height="44" class="logo">
-			<div class="systitle"></div>
-		</div>
-	</div>
-</div>
-<div id="bodyTopMain"></div>
 <div id="title">
 	<p>银行专线请求响应数统计</p>
 	<span>周期=1分钟&nbsp;&nbsp;&nbsp;&nbsp;
@@ -175,8 +144,6 @@
 			},
 			error:function(errorMsg){//请求失败后回调函数
 				showPrompt("数据加载出错！",50000);
-			    //设置ECharts过渡控制
-				myChart.hideLoading();
 			},
 		});
 		
@@ -201,7 +168,7 @@
 				
 				legend:{//图例
 					x:'40px',//水平安放位置
-					y:'260px',//垂直安放位置
+					y:'210px',//垂直安放位置
 					itemWidth:18,//图例图形宽度
 					itemHeight:12,//图例图形高度
 					padding:[0,0,0,0],//图例内边距
@@ -217,7 +184,7 @@
 				grid:{//直角坐标系内绘图网格
 					x:35,//左上角横坐标    
 					y:35,//左上角纵坐标
-					height:'200px',//网格高度
+					height:'150px',//网格高度
 					width:'390px',//网格宽度 
 				},
 				

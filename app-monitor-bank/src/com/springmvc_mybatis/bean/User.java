@@ -1,77 +1,46 @@
 package com.springmvc_mybatis.bean;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class User implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private String name;
+
+	private static final long serialVersionUID = -8151433569432403301L;
+	private Integer userId;
+	private String userName;
 	private String password;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date time;
-
-	public User() {
-		super();
+	//角色ID
+	private Integer roleId;
+	private Role role;
+	public Integer getUserId() {
+		return userId;
 	}
-
-	public User(String name, String password) {
-		super();
-		this.name = name;
-		this.password = password;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-
-	public User(Integer id, String name, String password, Date time) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.time = time;
+	public String getUserName() {
+		return userName;
 	}
-
-	public Integer getId() {
-		return id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Date getTime() {
-		return time;
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password
-				+ ", time=" + time + "]";
-	}
-
+	
 }
