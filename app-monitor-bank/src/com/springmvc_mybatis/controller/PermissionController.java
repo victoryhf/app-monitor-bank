@@ -11,22 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.springmvc_mybatis.bean.Role;
+import com.springmvc_mybatis.bean.Permission;
 import com.springmvc_mybatis.mapper.PermissionMapper;
 import com.springmvc_mybatis.service.PermissionService;
-import com.springmvc_mybatis.service.RoleService;
 import com.springmvc_mybatis.tools.CheckException;
 import com.springmvc_mybatis.tools.ResponseJsonResult;
 
 @Controller
-@RequestMapping("/role")
-public class RoleController {
+@RequestMapping("/permission")
+public class PermissionController {
 
     private Logger logger = Logger.getLogger(this.getClass());
-
-    @Autowired
-    @Qualifier("roleService")
-    private RoleService roleService;
 
     @Autowired
     @Qualifier("permissionService")
@@ -35,24 +30,25 @@ public class RoleController {
     @Autowired
     private PermissionMapper permissionMapper;
 
-    @RequestMapping("/roleList")
-    public String roleList(Model model) {
+    @RequestMapping("/permissionList")
+    public String permissionList(Model model) {
         try {
-            List<Role> roles = roleService.getRoles();
-            model.addAttribute("roles", roles);
+            List<Permission> permissions = permissionService.getPermissions();
+            model.addAttribute("permissions", permissions);
             model.addAttribute("success", 1);
         } catch (Exception e) {
             model.addAttribute("msg", "查询失败，请重试！");
             model.addAttribute("success", 0);
             logger.warn(e);
         }
-        return "roleList";
+        return "permissionList";
     }
 
-    @RequestMapping("/addRole")
-    public void addRole(HttpServletResponse response, Role role) {
+    @RequestMapping("/addPermission")
+    public void addPermission(HttpServletResponse response,
+            Permission permission) {
         try {
-            roleService.addRole(role);
+            permissionService.addPermission(permission);
             new ResponseJsonResult(1, "添加成功", null, response);
         } catch (CheckException e) {
             new ResponseJsonResult(0, e.getMessage(), null, response);
@@ -63,10 +59,11 @@ public class RoleController {
         }
     }
 
-    @RequestMapping("/deleteRole")
-    public void deleteRole(HttpServletResponse response, Role role) {
+    @RequestMapping("/deletePermission")
+    public void deletePermission(HttpServletResponse response,
+            Permission permission) {
         try {
-            roleService.deleteRole(role);
+            permissionService.deletePermission(permission);
             new ResponseJsonResult(1, "删除成功！", null, response);
         } catch (CheckException e) {
             new ResponseJsonResult(0, e.getMessage(), null, response);
@@ -77,28 +74,23 @@ public class RoleController {
         }
     }
 
-    @RequestMapping("/toAddRole")
-    public String toAddRole(Model model) {
-        roleService.toAddRole(model);
-        return "addRole";
-    }
-
-    @RequestMapping("/toModifyRole")
-    public String toModifyUser(Model model, Role role) {
+    @RequestMapping("/toModifyPermission")
+    public String toModifyUser(Model model, Permission permission) {
         try {
-            roleService.toModifyRole(role, model);
+            permissionService.toModifyPermission(permission, model);
         } catch (CheckException e) {
             logger.error(e);
         } catch (Exception e) {
             logger.error(e);
         }
-        return "modifyRole";
+        return "modifyPermission";
     }
 
-    @RequestMapping("/modifyRole")
-    public void modifyRole(HttpServletResponse response, Role role) {
+    @RequestMapping("/modifyPermission")
+    public void modifyPermission(HttpServletResponse response,
+            Permission permission) {
         try {
-            roleService.modifyRole(role);
+            permissionService.modifyPermission(permission);
             new ResponseJsonResult(1, "修改成功！", null, response);
         } catch (CheckException e) {
             new ResponseJsonResult(0, e.getMessage(), null, response);

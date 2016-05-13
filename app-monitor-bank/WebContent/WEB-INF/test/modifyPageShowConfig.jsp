@@ -18,9 +18,9 @@ int pageConfigId = Integer.parseInt(request.getParameter("pageConfigId"));
  -->
  </head>
  <body>
+ 	<input type="hidden" id="pageConfigId" value="<%=pageConfigId %>" />
    <table width="60%" border="1">
     <tr align="left">
-    <input type="hidden" id="pageConfigId" value="<%=pageConfigId %>" />
      <td>
                    网页名称             
       <input type="text" id="pageName" />

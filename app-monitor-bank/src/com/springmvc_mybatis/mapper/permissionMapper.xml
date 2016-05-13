@@ -33,6 +33,10 @@
 		</if>
 	</select>
 	
+	<select id="findById" resultMap="permission">
+		select * from permission where permission_id=#{permissionId}
+	</select>
+	
 	<select id="findAll" resultMap="permission">
 		select * from permission order by permission_value asc;
 	</select>
@@ -40,4 +44,36 @@
 	<select id="findAllLimitRole" resultMap="permission" parameterType="Integer">
 		select * from permission where permission_value &lt;= #{rolePerValue}
 	</select>
+	
+	<insert id="addPermission"  parameterType="Permission" useGeneratedKeys="true" keyProperty="permissionId">
+        insert into permission (
+		  permission_name,
+		  permission_value,
+		  permission_url
+		) 
+		values
+		  (
+		    '${permissionName}',
+		    '${permissionValue}',
+		    '${permissionUrl}'
+		  ) 
+
+    </insert>
+    
+	<update id="updatePermission"  parameterType="Permission" >
+    	update 
+		  monitor.permission 
+		set
+		  permission_name = '${permissionName}',
+		  permission_value = '${permissionValue}',
+		  permission_url = '${permissionUrl}' 
+		where permission_id = '${permissionId}' 
+    </update>
+	
+	 <delete id="deletePermission" parameterType="Integer">
+  		delete 
+		from
+		  monitor.permission 
+		where permission_id = '${permissionId}' ;
+	</delete>
 </mapper>

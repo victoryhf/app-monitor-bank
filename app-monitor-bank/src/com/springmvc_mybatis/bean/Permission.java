@@ -2,49 +2,48 @@ package com.springmvc_mybatis.bean;
 
 import java.io.Serializable;
 
-public class Permission implements Serializable{
-	
-	private static final long serialVersionUID = -3428198086355289321L;
+public class Permission implements Serializable {
 
-	private Integer permissionId;
-	  
-	private String permissionName;
-	
-	private Integer permissionValue;
-	
-	private String permissionUrl;
+    private static final long serialVersionUID = -3428198086355289321L;
 
-	public Integer getPermissionId() {
-		return permissionId;
-	}
+    private Integer permissionId;
 
-	public void setPermissionId(Integer permissionId) {
-		this.permissionId = permissionId;
-	}
+    private String permissionName;
 
-	public String getPermissionName() {
-		return permissionName;
-	}
+    private Integer permissionValue;
 
-	public void setPermissionName(String permissionName) {
-		this.permissionName = permissionName;
-	}
+    private String permissionUrl;
 
-	public Integer getPermissionValue() {
-		return permissionValue;
-	}
+    public Integer getPermissionId() {
+        return permissionId;
+    }
 
-	public void setPermissionValue(Integer permissionValue) {
-		this.permissionValue = permissionValue;
-	}
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
+    }
 
-	public String getPermissionUrl() {
-		return permissionUrl;
-	}
+    public String getPermissionName() {
+        return permissionName;
+    }
 
-	public void setPermissionUrl(String permissionUrl) {
-		this.permissionUrl = permissionUrl;
-	}
-	
-	
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
+    }
+
+    public Integer getPermissionValue() {
+        return permissionValue;
+    }
+
+    public void setPermissionValue(Integer permissionValue) {
+        this.permissionValue = permissionValue;
+    }
+
+    public String getPermissionUrl() {
+        return permissionUrl;
+    }
+
+    public void setPermissionUrl(String permissionUrl) {
+        this.permissionUrl = permissionUrl;
+    }
+
 }

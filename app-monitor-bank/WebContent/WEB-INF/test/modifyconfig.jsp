@@ -14,7 +14,6 @@ pageContext.setAttribute("basePath", basePath);
 <head>
 
 
-<!DOCTYPE HTML>
 <html>
  <head>
   <title>修改配置信息</title>

@@ -36,7 +36,7 @@ public class ConfigController {
 	
 	//新增配置信息
 	@RequestMapping("/addconfig")
-	public String addConfig(HttpServletRequest request, Model model,Config config) {
+	public String addConfig(HttpServletRequest request, Model model, Config config) {
 		int config_add = configrmapper.addConfig(config);
 		
 		if (config_add != 1) {

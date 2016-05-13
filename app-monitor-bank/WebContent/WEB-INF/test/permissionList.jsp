@@ -12,28 +12,28 @@
 <title>角色管理页面</title>
 </head>
 <body>
-<div>
-<%@include file="/WEB-INF/test/homePage.jsp"%>
-</div>
 <c:if test="${success == 1}">
-    <a href="role/toAddRole.action">添加角色</a>
-	<c:if test="${!(empty roles)}">
+    <a href="addPermission.jsp">添加权限</a>
+	<c:if test="${!(empty permissions)}">
 		<table class="table table-striped table-hover">
 			<tr>
-				<th>角色ID</th>
-				<th>角色名</th>
+				<th>权限ID</th>
+				<th>权限名</th>
 				<th>权限值</th>
+				<th>权限值</th>
+				<th>权限路径</th>
 				<th colspan="2">操作</th>
 			</tr>
-			<c:forEach items="${roles}" var="role" >
+			<c:forEach items="${permissions}" var="permission" >
 				<tr>
-					<td>${role.roleId}</td>
-					<td>${role.roleName}</td>
-					<td>${role.rolePermission}</td>
+					<td>${permission.permissionId}</td>
+					<td>${permission.permissionName}</td>
+					<td>${permission.permissionValue}</td>
+					<td>${permission.permissionUrl}</td>
 					<td><a 
-						href="role/toModifyRole.action?roleId=${role.roleId }"><font
+						href="permission/toModifyPermission.action?permissionId=${permission.permissionId }"><font
 							color="blue">修改</font></a></td>
-					<td><a href="javascript:void(0);" onclick="deleteRole(${role.roleId})">
+					<td><a href="javascript:void(0);" onclick="deletePermission(${permission.permissionId})">
 					<font
 							color="blue">删除</font></a></td>
 				</tr>
@@ -45,18 +45,18 @@
 </body>
 </html>
 <script type="text/javascript">
-function deleteRole(roleId){
+function deletePermission(permissionId){
 	$.ajax({
 		type:'post',//请求方式 
-		url:"role/deleteRole.action",//请求地址
+		url:"permission/deletePermission.action",//请求地址
 		data:{
-			roleId : roleId
+			permissionId : permissionId
 		},//请求数据类型 
 		dataType:"json",//请求返回的数据类型
 		success:function(result){//请求成功后回调函数
 			if(result){
 				if(result.success == 1){
-					location.href="role/roleList.action";
+					location.href="permission/permissionList.action";
 				}else{
 					alert(result.msg);
 				}

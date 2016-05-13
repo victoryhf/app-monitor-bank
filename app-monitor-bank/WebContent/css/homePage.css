@@ -63,6 +63,11 @@
 	
 }
 
+.menu_div ul li a{
+	color: #4f4f4f;
+	text-decoration: none;
+}
+
 
 .menu_div ul li:hover{
 	background:#acd6ff;

@@ -38,7 +38,9 @@
 </style>
 </head>
 <body>
-
+<div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
 <div id="title">
 	<p>银行专线请求响应数统计</p>
 	<span>周期=1分钟&nbsp;&nbsp;&nbsp;&nbsp;
@@ -143,10 +145,15 @@
 				
 			},
 			error:function(errorMsg){//请求失败后回调函数
-				setTimeout(function(){
-					loadCharts(curPag);
-				}, 5000);
-				showPrompt("数据加载出错！",3000);
+				if(errorMsg.status == 403){
+					alert("请登录！");
+					window.location.href="https://sars.99bill.net/sor/app-monitor-bank/login.jsp";
+				}else{
+					setTimeout(function(){
+						loadCharts(curPage);
+					}, 5000);
+					showPrompt("数据加载出错！",3000);
+				}
 			},
 		});
 		

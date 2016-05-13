@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.springmvc_mybatis.bean.Config;
-import com.springmvc_mybatis.bean.User;
 
 
 public interface ConfigMapper {

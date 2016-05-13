@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%   
   //页面每隔60秒自动刷新一遍        
@@ -15,7 +14,9 @@
 
 </head>
 <body>
-
+<div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
 <!--创建一个div容器-->
 <div class="no">
     <!--创建一个div并引入流式布局容器父类样式-->
@@ -118,10 +119,16 @@
 				
 			},
 			error:function(errorMsg){//请求失败后回调函数
-				setTimeout(function(){
-					require(['echarts','echarts/chart/line'],drawEcharts);
-				}, 5000);
-				showPrompt("数据加载出错！",3000);
+				if(errorMsg.status == 403){
+					alert("请登录！");
+					window.location.href="https://sars.99bill.net/sor/app-monitor-bank/login.jsp";
+				}else{
+					setTimeout(function(){
+						require(['echarts','echarts/chart/line'],drawEcharts);
+					}, 5000);
+					showPrompt("数据加载出错！",3000);
+				}
+				
 			},
 		});
 		
