@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.springmvc_mybatis.bean.Config;
 import com.springmvc_mybatis.mapper.ConfigMapper;
 
@@ -27,7 +26,7 @@ public class ConfigController {
 	
 	//查询所有配置信息
 	@RequestMapping("/configlist")
-	public String getAllConfigs(Model model) {
+	public String getAllConfigs(Model model,HttpServletRequest request) {
 		List<Config> configs = configrmapper.getAllConfigs();
 		model.addAttribute("configs", configs);
 		return "configlist";

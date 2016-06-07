@@ -1,12 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 int pageConfigId = Integer.parseInt(request.getParameter("pageConfigId"));
 %>
 <!DOCTYPE HTML>
 <html>
  <head>
+  <%@include file="/WEB-INF/test/base.jsp"%>
   <title>增加页面显示配置信息</title>
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="cache-control" content="no-cache">
@@ -18,6 +17,9 @@ int pageConfigId = Integer.parseInt(request.getParameter("pageConfigId"));
  -->
  </head>
  <body>
+ <div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
  	<input type="hidden" id="pageConfigId" value="<%=pageConfigId %>" />
    <table width="60%" border="1">
     <tr align="left">

@@ -11,6 +11,9 @@
   <meta http-equiv="description" content="This is my page">
  </head>
  <body>
+ <div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
    <table width="60%" border="1">
     <tr align="left">
      <td>角色名：  </td>   

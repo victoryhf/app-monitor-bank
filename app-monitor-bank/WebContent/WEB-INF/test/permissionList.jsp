@@ -9,7 +9,7 @@
 <%@include file="/WEB-INF/test/base.jsp"%>
 <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>角色管理页面</title>
+<title>权限管理页面</title>
 </head>
 <body>
 <c:if test="${success == 1}">

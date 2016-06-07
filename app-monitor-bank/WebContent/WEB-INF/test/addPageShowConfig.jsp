@@ -1,11 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE HTML>
 <html>
  <head>
+  <%@include file="/WEB-INF/test/base.jsp"%>
   <title>增加页面显示配置信息</title>
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="cache-control" content="no-cache">
@@ -17,6 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  -->
  </head>
  <body>
+ <div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
   <form action="./config/addconfig.action" name="form" method="post">
    <table width="60%" border="1">
     <tr align="left">

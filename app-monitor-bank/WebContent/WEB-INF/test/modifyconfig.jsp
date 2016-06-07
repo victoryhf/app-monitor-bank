@@ -1,21 +1,14 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/sor"+path+"/";
-pageContext.setAttribute("basePath", basePath);
-
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
 <html>
  <head>
+  <%@include file="/WEB-INF/test/base.jsp"%>
   <title>修改配置信息</title>
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="cache-control" content="no-cache">
@@ -27,7 +20,10 @@ pageContext.setAttribute("basePath", basePath);
  -->
  </head>
  <body>
-  <form action="./updateConfigByid.action" name="form" method="post">
+ <div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
+  <form action="config/updateConfigByid.action" name="form" method="post">
   <input type="hidden" id="id" name="id" value=${config.id} />
   <c:if test="${!(empty requestScope.config)}">
    <table width="60%" border="1">

@@ -32,8 +32,6 @@
 <!-- ECharts单文件引入-->
 <script src="build/dist/echarts.js"></script>
 <link href="css/top.css" rel="stylesheet">
-<link href="css/dialog.css" rel="stylesheet">
-<script src="js/dialog.js"></script>
 <script type="text/javascript">
     
 	//配置ECharts路径 

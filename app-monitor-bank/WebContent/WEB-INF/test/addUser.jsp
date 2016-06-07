@@ -14,6 +14,9 @@
  -->
  </head>
  <body>
+ <div>
+<%@include file="/WEB-INF/test/homePage.jsp"%>
+</div>
    <table width="60%" border="1">
     <tr align="left">
      <td>

@@ -15,6 +15,7 @@
 <%@include file="/WEB-INF/test/homePage.jsp"%>
 </div>
    <table width="60%" border="1">
+   
     <tr align="left">
      <td>
         	 原始密码：     
@@ -49,6 +50,10 @@
 		var oldPwd = $("#oldPassword").val();
 		var newPwd = $("#newPassword").val();
 		var confirm = $("#confirm").val();
+		var sessionMapId = getCookie("app-monitor-bank-sessionMapId");
+		if(sessionMapId == null || sessionMapId == ""){
+			alert("请先登录！");
+		}
 		if($("#oldPassword").val() == ""){
 			alert("请填写原始密码！");
 			$("#submit").attr('disabled',false); 
@@ -75,7 +80,8 @@
 			url:"user/modifyPassWord.action",//请求地址
 			data:{
 				oldPwd : oldPwd,
-				newPwd : newPwd
+				newPwd : newPwd,
+				sessionMapId : sessionMapId
 			},//请求数据类型 
 			dataType:"json",//请求返回的数据类型
 			success:function(result){//请求成功后回调函数

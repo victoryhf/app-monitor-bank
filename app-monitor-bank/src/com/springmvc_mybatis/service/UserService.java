@@ -1,5 +1,6 @@
 package com.springmvc_mybatis.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import com.springmvc_mybatis.mapper.RoleMapper;
 import com.springmvc_mybatis.mapper.UserMapper;
 import com.springmvc_mybatis.tools.CheckException;
 import com.springmvc_mybatis.tools.EmptyUtil;
+import com.springmvc_mybatis.tools.GlobalVariable;
 
 @Service("userService")
 public class UserService {
@@ -37,7 +39,7 @@ public class UserService {
      * @param request
      * @throws CheckException
      */
-    public void login(User user, HttpServletRequest request)
+    public String login(User user, HttpServletRequest request)
             throws CheckException {
         if (EmptyUtil.isEmpty(user.getUserName())) {
             throw new CheckException("请填写用户名！");
@@ -58,7 +60,12 @@ public class UserService {
         if (EmptyUtil.isNotEmpty(user.getRoleId())) {
             user.getRole();
         }
-        request.getSession().setAttribute("user", user);
+        String nowTime = String.valueOf(new Date().getTime());
+        Integer rand = (int) (Math.random()*10000);
+        String sessionMapId = nowTime+rand.toString();
+        GlobalVariable.sessionMap.put(sessionMapId, user);
+        //request.getSession().setAttribute("user", user);
+        return sessionMapId;
     }
 
     /**
@@ -183,12 +190,16 @@ public class UserService {
     }
 
     public void modifyUser(HttpServletRequest request) throws CheckException {
-        String oldPwd = request.getParameter("oldPwd");
-        String newPwd = request.getParameter("newPwd");
-        User user = (User) request.getSession().getAttribute("user");
+        if(EmptyUtil.isEmpty(request.getParameter("sessionMapId"))){
+            throw new CheckException("请先登录！");
+        }
+        User user = (User) GlobalVariable.sessionMap.get(request.getParameter("sessionMapId").toString());
         if (EmptyUtil.isEmpty(user)) {
             throw new CheckException("请先登录！");
         }
+        String oldPwd = request.getParameter("oldPwd");
+        String newPwd = request.getParameter("newPwd");
+        
         if (EmptyUtil.isEmpty(oldPwd)) {
             throw new CheckException("请填写原始密码！");
         }

@@ -29,7 +29,7 @@
 				request.setCharacterEncoding("UTF8");
 					if(request.getParameter("msg") != null){
 				%>
-				<span class="tips"><%= request.getParameter("msg")%></span><br/>
+				<span class="login_tips"><%= request.getParameter("msg")%></span><br/>
 				<%
 					}
 				%>

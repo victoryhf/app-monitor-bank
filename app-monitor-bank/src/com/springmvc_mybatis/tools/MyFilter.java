@@ -1,8 +1,6 @@
 package com.springmvc_mybatis.tools;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,7 +16,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.springmvc_mybatis.bean.User;
 import com.springmvc_mybatis.service.PermissionService;
 
 public class MyFilter implements Filter {
@@ -44,7 +41,9 @@ public class MyFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        String url = request.getRequestURI();
+        /*String url = request.getRequestURI();
+        
+        
         // 不用教研session
         List<String> noSessionUrl = new ArrayList<String>();
         noSessionUrl.add("/images/");
@@ -65,8 +64,9 @@ public class MyFilter implements Filter {
                 return;
             }
         }
+        
         // 校验session
-        if (EmptyUtil.isEmpty(request.getSession().getAttribute("user"))) {
+        if (EmptyUtil.isEmpty(request.getParameter("sessionMapId"))) {
 
             if (request.getHeader("x-requested-with") != null && "XMLHttpRequest".equalsIgnoreCase(request.getHeader("x-requested-with"))) {
                 // 向http头添加 状态 sessionstatus
@@ -82,9 +82,8 @@ public class MyFilter implements Filter {
             }
 
         }
-        System.out.println(request.getScheme()+"     "+request.getSession().getId());
         // 校验权限
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) GlobalVariable.sessionMap.get(request.getParameter("sessionMapId"));
         if (!permissionService.checkPermission(url, user.getRole().getRolePermission())) {
             if (request.getHeader("x-requested-with") != null && "XMLHttpRequest".equalsIgnoreCase(request.getHeader("x-requested-with"))) {
                 // 向http头添加 状态 sessionstatus
@@ -98,7 +97,7 @@ public class MyFilter implements Filter {
                 response.sendRedirect("https://sars.99bill.net/sor/app-monitor-bank/login.jsp");
                 return;
             }
-        }
+        }*/
         filterChain.doFilter(request, response);
 
     }
@@ -110,5 +109,6 @@ public class MyFilter implements Filter {
         permissionService = (PermissionService) ctx
                 .getBean("permissionService");
     }
+    
 
 }

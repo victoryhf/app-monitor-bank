@@ -8,9 +8,9 @@
 
 <!-- ECharts单文件引入-->
 <script src="./build/dist/echarts.js"></script>
+
+<link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/top.css" rel="stylesheet">
-<link href="css/dialog.css" rel="stylesheet">
-<script src="js/dialog.js"></script>
 <style type="text/css">
 	#main{
 		width: 100%;
